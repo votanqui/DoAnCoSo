@@ -1,0 +1,39 @@
+﻿@model IEnumerable<DoAn_21806064393.Models.User>
+
+@{
+    ViewBag.Title = "Danh sách người dùng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 style="color: black; font-weight: bold;">Danh sách người dùng</h2>
+<div class="table-responsive">
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Tên tài khoản</th>
+                <th>Mật khẩu</th>
+                <th>Vai trò</th>
+                <th>Tiền</th>
+                <th>Email</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.username</td>
+                    <td>@item.password</td>
+                    <td>@(item.roles == 0 ? "Người dùng" : "Quản trị viên")</td>
+                    <td>@item.price</td>
+                    <td>@item.gmail</td>
+                    <td>
+                        @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.id_user }, new { @class = "btn btn-primary btn-sm" })
+                        @Html.ActionLink("Chi tiết", "Details", new { id = item.id_user }, new { @class = "btn btn-info btn-sm" })
+                        @Html.ActionLink("Xóa", "DeleteList", new { id = item.id_user }, new { @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

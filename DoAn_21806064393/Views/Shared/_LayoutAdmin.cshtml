@@ -1,0 +1,66 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_LayoutAdmin</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+       
+
+        .admin-menu {
+            background-color: #333;
+            color: #fff;
+            height: 100vh;
+        }
+
+            .admin-menu a {
+                display: block;
+                padding: 10px;
+                color: #fff;
+                text-decoration: none;
+            }
+
+                .admin-menu a:hover {
+                    background-color: #555;
+                }
+
+        .admin-content {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 admin-menu">
+                <h4>Admin Panel</h4>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">@Session["UserName"]</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("ThongKe", "Admin")">Thông Kê Tổng</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "Admin")">Quản lý thành viên</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("listacc", "Admin")">Quản lý tài khoản game</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-10 admin-content">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</body>
+   
+
+</html>
+

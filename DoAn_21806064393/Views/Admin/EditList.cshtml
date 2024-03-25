@@ -1,0 +1,82 @@
+﻿@model DoAn_21806064393.Models.acc
+
+@{
+    ViewBag.Title = "EditList";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>EditList</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td>@Html.LabelFor(model => model.account)</td>
+                    <td>
+                        @Html.EditorFor(model => model.account, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.account, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.password)</td>
+                <td>
+                    @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.so_mau_mat)</td>
+            <td>
+                @Html.EditorFor(model => model.so_mau_mat, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.so_mau_mat, "", new { @class = "text-danger" })
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(model => model.so_tuong)</td>
+        <td>
+            @Html.EditorFor(model => model.so_tuong, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.so_tuong, "", new { @class = "text-danger" })
+    </td>
+</tr>
+<tr>
+    <td>@Html.LabelFor(model => model.so_skin)</td>
+    <td>
+        @Html.EditorFor(model => model.so_skin, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(model => model.so_skin, "", new { @class = "text-danger" })
+</td>
+</tr>
+<tr>
+    <td>@Html.LabelFor(model => model.gia)</td>
+    <td>
+        @Html.EditorFor(model => model.gia, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(model => model.gia, "", new { @class = "text-danger" })
+</td>
+</tr>
+<tr>
+    <td>@Html.LabelFor(model => model.imageURL)</td>
+    <td>
+        @Html.EditorFor(model => model.imageURL, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(model => model.imageURL, "", new { @class = "text-danger" })
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+</div>
+}

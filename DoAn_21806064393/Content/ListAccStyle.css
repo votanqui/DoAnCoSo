@@ -1,0 +1,41 @@
+﻿body {
+    background-image: url('../images/bg_new.jpg');
+    background-size: cover; /* Căn chỉnh kích thước hình ảnh để phủ hết khu vực */
+    background-position: center; /* Căn chỉnh vị trí của hình ảnh */
+    position: relative; /* Đặt vị trí tương đối để các phần tử con có thể định vị tuyệt đối */
+}
+.info {
+    display: flex;
+    flex-direction: row;
+    color: white; /* Đặt màu chữ là trắng */
+}
+
+    .info p {
+        margin-right: 10px; /* Khoảng cách giữa các phần tử */
+    }
+.thumbnail {
+    border: 3px solid #3F9FFF; /* Màu viền xanh */
+    border-radius: 5px; /* Bo góc viền */
+}
+.custom-container {
+    background-color: rgba(0, 0, 0, 0.5); /* Màu đen với độ trong suốt 50% */
+    padding: 30px; /* Để tránh việc nội dung bị ẩn bởi background */
+    margin-top: 15px; /* Khoảng cách giữa container và phần trên */
+}
+.yellow-text {
+    color: yellow;
+    font-weight: bold; /* Chữ đậm */
+    border: 2px solid yellow; /* Border cong 2px màu vàng */
+    border-radius: 4px;
+    padding: 10px 15px;
+    margin:0;
+
+}
+.price {
+    display: flex;
+    flex-direction: row;
+    
+}
+.custom-margin {
+    margin-top: 15px;
+}

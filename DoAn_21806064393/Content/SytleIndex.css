@@ -1,0 +1,31 @@
+﻿.header {
+    color: #f7df1e; /* Màu chữ đen */
+    text-align: center;
+    padding: 0;
+    margin-top: 30px;
+}
+.thumbnail {
+    border: 3px solid #3F9FFF; /* Màu viền xanh */
+    border-radius: 5px; /* Bo góc viền */
+}
+
+.caption {
+    text-align: center; /* Canh giữa nội dung trong thumbnail */
+}
+
+.btn-thumbnail {
+    margin-bottom: 15px; /* Thêm padding cho nút */
+}
+
+.custom-container {
+    background-color: rgba(0, 0, 0, 0.5); /* Màu đen với độ trong suốt 50% */
+    padding: 30px; /* Để tránh việc nội dung bị ẩn bởi background */
+    margin-top: 15px; /* Khoảng cách giữa container và phần trên */
+}
+.thumbnail h4,
+.thumbnail p {
+    color: #ffc107; /* Màu chữ vàng */
+}
+.custom-margin {
+    margin-top: 15px;
+}

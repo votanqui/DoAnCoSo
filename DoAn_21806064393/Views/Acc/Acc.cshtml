@@ -1,0 +1,40 @@
+﻿@model IEnumerable<DoAn_21806064393.Models.acc>
+
+@{
+    ViewBag.Title = "Acc";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<head>
+    <link href="~/Content/ListAccStyle.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+@{
+    bool isLoggedIn = TempData["LoggedIn"] != null ? (bool)TempData["LoggedIn"] : false;
+}
+<body>
+    <div class="container custom-container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3 custom-margin">
+                    <div class="thumbnail">
+                        <img src="~/Content/images/@item.imageURL" alt="Thumbnail" width="100%">
+                        <div class="info">
+                            <p class="white-text">Số tướng: @item.so_tuong</p>
+                            <p class="white-text">Số skin: @item.so_skin</p>
+                        </div>
+                        <div class="price" style="margin-bottom: 10px;">
+                            <p class="yellow-text ">@item.gia</p>
+                            <button class="btn btn-danger ">Chi Tiết</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+
+</body>
