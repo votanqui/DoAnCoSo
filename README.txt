@@ -1,4 +1,5 @@
 đầu tiên cần chạy file script này vào sql :
+------------------------------------------------------------------------------
 USE [webaccgame]
 GO
 /****** Object:  Table [dbo].[acc]    Script Date: 25/03/2024 6:44:08 CH ******/
@@ -62,7 +63,7 @@ SET IDENTITY_INSERT [dbo].[Users] OFF
 GO
 ALTER TABLE [dbo].[Users] ADD  CONSTRAINT [DF_Users1_roles]  DEFAULT ((0)) FOR [roles]
 GO
-
+-----------------------------------------------------------------------
 sau khi cài đặt xong sẽ mở file trong visual studio bấm view -> server explorer -> sau đó add database mà vừa cài đặt xong.
 tiếp theo vào web.config sửa lại đường dẫn tới database 
 nếu các controller có lỗi ngay DataClasses1DataContext hãy để chuột ngay DataClasses1DataContext và sửa lỗi theo hướng dẫn sau đó vào DataClasses1.designer.cs trong Models , nếu như bấm sửa lỗi theo hướng dẫn ngay 
