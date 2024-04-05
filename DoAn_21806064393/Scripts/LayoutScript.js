@@ -1,5 +1,5 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
-    showNapThe(); // Hiển thị div khi trang được tải
+    showNapThe();
 });
 
 function showNapThe() {
@@ -15,5 +15,3 @@ function showTopNapThe() {
     document.getElementById('topNapButton').classList.add('active');
     document.getElementById('napButton').classList.remove('active');
 }
-var napTheWidth = document.getElementById('napTheContainer').offsetWidth;
-document.getElementById('topNapTheContainer').style.width = napTheWidth + 'px';

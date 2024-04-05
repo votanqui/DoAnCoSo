@@ -32,24 +32,15 @@
                                 <a class="nav-link" href="@Url.Action("Index", "Home")">Trang Chủ</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Hướng Dẫn Mua Acc</a>
+                                <a class="nav-link" href="@Url.Action("Contact", "Home")">Hướng Dẫn Mua Acc</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Hướng Dẫn Bảo Mật</a>
+                                <a class="nav-link" href="@Url.Action("baomat", "Home")">Hướng Dẫn Bảo Mật</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Dịch Vụ</a>
-                                <div class="service-popup">
-                                    <ul>
-                                        <li class="menu-item">
-                                            <a href="" title="CÀY THUÊ">CÀY THUÊ</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="" title="DỊCH VỤ NẠP RP">NẠP RP</a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                <a class="nav-link" href="@Url.Action("GioHang", "User")"><i class="fa-solid fa-cart-shopping"></i></a>
                             </li>
+
                             @if (!isLoggedIn)
                             {
 
@@ -72,11 +63,22 @@
                                     <li class="nav-item ">
                                         <a class="nav-link" href="#" id="userInfoDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="fa-solid fa-user"></i>
-                                            <span>Có: @Session["UserPrice"]VND</span>
-                                          
+                                            @{
+                                                // Lấy giá trị từ Session và chuyển đổi thành số nguyên (nếu cần)
+                                                var sessionPrice = Convert.ToInt32(Session["UserPrice"]);
+                                            }
+
+                                            <td class="sotien">@String.Format("{0:#,##0}", sessionPrice)VND </td>
+
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="userInfoDropdown">
-                                            <a class="dropdown-item" href="#">Thông tin người dùng</a>
+                                            @{
+                                                var loggedInUser = Session["LoggedInUser"] as DoAn_21806064393.Models.User;
+                                            }
+
+                                            <a class="dropdown-item" href="@Url.Action("DetailsUser", "User", new { id = loggedInUser != null ? loggedInUser.id_user : 0 })">Thông tin người dùng</a>
+
+
                                             <a class="dropdown-item" href="#">Nạp tiền</a>
                                             <a class="dropdown-item" href="@Url.Action("Logout", "User")">Đăng xuất</a>
                                         </div>
@@ -148,11 +150,10 @@
                     </form>
                 </div>
                 <div id="topNapTheContainer" class="top-nap-the-container" style="display: none;">
-                    <!-- Nội dung khi bấm vào TOP NẠP THẺ -->
+
                 </div>
             </div>
             <div class="col-sm-9" style="padding:0;">
-                <!-- Content for the second column -->
                 <div style="background-color: #eaeaea;">
                     <img src="~/images/shopacc.png" width="100%" />
                 </div>
@@ -160,6 +161,7 @@
         </div>
     </div>
     @RenderBody()
+
     <hr />
     <footer>
         <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
@@ -219,7 +221,36 @@
             </div>
         </div>
     </div>
+    <footer class="footer-container">
+        <p>HỆ THỐNG BÁN ACC TỰ ĐỘNG</p>
+        <p>ĐẢM BẢO UY TÍN VÀ CHẤT LƯỢNG.</p>
+        <p>CHÚNG TÔI LUÔN LẤY UY TÍN LÀM HÀNG ĐẦU ĐỐI VỚI KHÁCH HÀNG. HI VỌNG SẼ ĐƯỢC PHỤC VỤ CÁC BẠN. CẢM ƠN!</p>
+        <p>Số điện thoại: 123456789</p>
+        <p>Email: nhom8vippro@gmail.com</p>
+    </footer>
+
+    <style>
+        .navbar-nav .nav-item .nav-link:hover {
+            color: white !important;
+        }
+
+        .navbar-nav .nav-item .nav-link:focus, .navbar-nav .nav-item .nav-link.active {
+            color: white !important;
+        }
+
+        .footer-container {
+            background-color: black;
+            color: gold;
+            text-align: center;
+            padding: 20px;
+        }
+
+            .footer-container p {
+                margin: 5px 0;
+            }
+    </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
 
@@ -229,9 +260,7 @@
 
             userIcon.addEventListener('click', function (event) {
                 event.preventDefault();
-                event.stopPropagation(); // Ngăn chặn sự kiện click lan sang dropdown-toggle
-
-                // Hiển thị hoặc ẩn dropdown menu
+                event.stopPropagation();
                 if (dropdownMenu.style.display === 'block') {
                     dropdownMenu.style.display = 'none';
                 } else {
@@ -245,9 +274,7 @@
 
             userIcon.addEventListener('click', function (event) {
                 event.preventDefault();
-                event.stopPropagation(); // Ngăn chặn sự kiện click lan sang dropdown-toggle
-
-                // Hiển thị hoặc ẩn dropdown menu
+                event.stopPropagation();
                 if (dropdownMenu.style.display === 'block') {
                     dropdownMenu.style.display = 'none';
                 } else {
@@ -255,6 +282,7 @@
                 }
             });
         });
+
     </script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

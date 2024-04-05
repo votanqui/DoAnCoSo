@@ -2,16 +2,48 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="DataClasses1">
   <DataContextMoniker Name="/DataClasses1DataContext" />
   <nestedChildShapes>
-    <classShape Id="5e1dd08d-eedc-469b-b443-820a10767f4c" absoluteBounds="0.75, 0.75, 2, 2.3478011067708335">
-      <DataClassMoniker Name="/DataClasses1DataContext/acc" />
-      <nestedChildShapes>
-        <elementListCompartment Id="aaefae4f-7ca6-40dc-8360-97811d91ef14" absoluteBounds="0.765, 1.21, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="2d003753-7d5a-4c44-9c21-622f4cfc2746" absoluteBounds="3.75, 0.75, 2, 1.9631982421875">
+    <classShape Id="8b102e5f-ae45-41d0-b66b-cae6ecd6097f" absoluteBounds="6.75, 0.75, 2, 1.9631982421875003">
       <DataClassMoniker Name="/DataClasses1DataContext/User" />
       <nestedChildShapes>
-        <elementListCompartment Id="3a422c14-eded-4712-80dc-650d564930e8" absoluteBounds="3.765, 1.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="a6e00cc8-e6d1-45cf-9494-d190935fb67e" absoluteBounds="6.765, 1.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="58e6a488-10db-4fd9-8927-13be40df57bf" absoluteBounds="3.5, 1, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/DataClasses1DataContext/Tuong" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9d087fb8-7384-462f-a3d3-cc26ff4925c1" absoluteBounds="3.515, 1.46, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5105ea6b-2d9f-4003-b748-d16c6e8be074" absoluteBounds="3.5, 3.625, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/DataClasses1DataContext/Cart" />
+      <nestedChildShapes>
+        <elementListCompartment Id="79612650-f980-4676-9f19-cc5476c88076" absoluteBounds="3.515, 4.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="77cfc042-dfea-4431-ad12-58d78ac8f2fd" absoluteBounds="0.75, 1.75, 2, 3.1170068359375005">
+      <DataClassMoniker Name="/DataClasses1DataContext/acc" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ce059dfb-9618-48f2-8d95-8d31961530d9" absoluteBounds="0.765, 2.21, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(1.3437505 : 1.75); (1.3437505 : 0.7); (4.5 : 0.7); (4.5 : 1)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DataClasses1DataContext/acc/acc_Tuong" />
+      <nodes>
+        <classShapeMoniker Id="77cfc042-dfea-4431-ad12-58d78ac8f2fd" />
+        <classShapeMoniker Id="58e6a488-10db-4fd9-8927-13be40df57bf" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 4.24600341796875); (3.5 : 4.24600341796875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DataClasses1DataContext/acc/acc_Cart" />
+      <nodes>
+        <classShapeMoniker Id="77cfc042-dfea-4431-ad12-58d78ac8f2fd" />
+        <classShapeMoniker Id="5105ea6b-2d9f-4003-b748-d16c6e8be074" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="9254dd55-1344-4f14-a474-dd5b6b94089c" absoluteBounds="2, 1, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/DataClasses1DataContext/GioHang" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c494ede5-9772-450b-be59-1fa1b4e7a3f0" absoluteBounds="2.015, 1.46, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

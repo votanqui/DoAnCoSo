@@ -30,12 +30,21 @@ namespace DoAn_21806064393.Models
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void Insertacc(acc instance);
-    partial void Updateacc(acc instance);
-    partial void Deleteacc(acc instance);
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
+    partial void InsertTuong(Tuong instance);
+    partial void UpdateTuong(Tuong instance);
+    partial void DeleteTuong(Tuong instance);
+    partial void InsertCart(Cart instance);
+    partial void UpdateCart(Cart instance);
+    partial void DeleteCart(Cart instance);
+    partial void Insertacc(acc instance);
+    partial void Updateacc(acc instance);
+    partial void Deleteacc(acc instance);
+    partial void InsertGioHang(GioHang instance);
+    partial void UpdateGioHang(GioHang instance);
+    partial void DeleteGioHang(GioHang instance);
     #endregion
 		
 		public DataClasses1DataContext(string connection) : 
@@ -61,14 +70,37 @@ namespace DoAn_21806064393.Models
 		{
 			OnCreated();
 		}
-
-        public DataClasses1DataContext():
+        public DataClasses1DataContext() :
             base(global::System.Configuration.ConfigurationManager.ConnectionStrings["webaccgameConnectionString"].ConnectionString, mappingSource)
         {
             OnCreated();
         }
 
-        public System.Data.Linq.Table<acc> accs
+        public System.Data.Linq.Table<User> Users
+		{
+			get
+			{
+				return this.GetTable<User>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Tuong> Tuongs
+		{
+			get
+			{
+				return this.GetTable<Tuong>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Cart> Carts
+		{
+			get
+			{
+				return this.GetTable<Cart>();
+			}
+		}
+		
+		public System.Data.Linq.Table<acc> accs
 		{
 			get
 			{
@@ -76,11 +108,617 @@ namespace DoAn_21806064393.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<User> Users
+		public System.Data.Linq.Table<GioHang> GioHangs
 		{
 			get
 			{
-				return this.GetTable<User>();
+				return this.GetTable<GioHang>();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
+	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id_user;
+		
+		private string _username;
+		
+		private string _password;
+		
+		private System.Nullable<int> _roles;
+		
+		private System.Nullable<decimal> _price;
+		
+		private string _gmail;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_userChanging(int value);
+    partial void Onid_userChanged();
+    partial void OnusernameChanging(string value);
+    partial void OnusernameChanged();
+    partial void OnpasswordChanging(string value);
+    partial void OnpasswordChanged();
+    partial void OnrolesChanging(System.Nullable<int> value);
+    partial void OnrolesChanged();
+    partial void OnpriceChanging(System.Nullable<decimal> value);
+    partial void OnpriceChanged();
+    partial void OngmailChanging(string value);
+    partial void OngmailChanged();
+    #endregion
+		
+		public User()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_user", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id_user
+		{
+			get
+			{
+				return this._id_user;
+			}
+			set
+			{
+				if ((this._id_user != value))
+				{
+					this.Onid_userChanging(value);
+					this.SendPropertyChanging();
+					this._id_user = value;
+					this.SendPropertyChanged("id_user");
+					this.Onid_userChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_username", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string username
+		{
+			get
+			{
+				return this._username;
+			}
+			set
+			{
+				if ((this._username != value))
+				{
+					this.OnusernameChanging(value);
+					this.SendPropertyChanging();
+					this._username = value;
+					this.SendPropertyChanged("username");
+					this.OnusernameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_password", DbType="NVarChar(50)")]
+		public string password
+		{
+			get
+			{
+				return this._password;
+			}
+			set
+			{
+				if ((this._password != value))
+				{
+					this.OnpasswordChanging(value);
+					this.SendPropertyChanging();
+					this._password = value;
+					this.SendPropertyChanged("password");
+					this.OnpasswordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_roles", DbType="Int")]
+		public System.Nullable<int> roles
+		{
+			get
+			{
+				return this._roles;
+			}
+			set
+			{
+				if ((this._roles != value))
+				{
+					this.OnrolesChanging(value);
+					this.SendPropertyChanging();
+					this._roles = value;
+					this.SendPropertyChanged("roles");
+					this.OnrolesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price", DbType="Decimal(10,0)")]
+		public System.Nullable<decimal> price
+		{
+			get
+			{
+				return this._price;
+			}
+			set
+			{
+				if ((this._price != value))
+				{
+					this.OnpriceChanging(value);
+					this.SendPropertyChanging();
+					this._price = value;
+					this.SendPropertyChanged("price");
+					this.OnpriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gmail", DbType="VarChar(50)")]
+		public string gmail
+		{
+			get
+			{
+				return this._gmail;
+			}
+			set
+			{
+				if ((this._gmail != value))
+				{
+					this.OngmailChanging(value);
+					this.SendPropertyChanging();
+					this._gmail = value;
+					this.SendPropertyChanged("gmail");
+					this.OngmailChanged();
+				}
+			}
+		}
+
+        public string ConfirmPassword { get; set; }
+
+        public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tuong")]
+	public partial class Tuong : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id_tuong;
+		
+		private string _ma_tuong;
+		
+		private string _imageURLtuong;
+		
+		private string _name_tuong;
+		
+		private System.Nullable<int> _id_acc;
+		
+		private EntityRef<acc> _acc;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_tuongChanging(int value);
+    partial void Onid_tuongChanged();
+    partial void Onma_tuongChanging(string value);
+    partial void Onma_tuongChanged();
+    partial void OnimageURLtuongChanging(string value);
+    partial void OnimageURLtuongChanged();
+    partial void Onname_tuongChanging(string value);
+    partial void Onname_tuongChanged();
+    partial void Onid_accChanging(System.Nullable<int> value);
+    partial void Onid_accChanged();
+    #endregion
+		
+		public Tuong()
+		{
+			this._acc = default(EntityRef<acc>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_tuong", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id_tuong
+		{
+			get
+			{
+				return this._id_tuong;
+			}
+			set
+			{
+				if ((this._id_tuong != value))
+				{
+					this.Onid_tuongChanging(value);
+					this.SendPropertyChanging();
+					this._id_tuong = value;
+					this.SendPropertyChanged("id_tuong");
+					this.Onid_tuongChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ma_tuong", DbType="NVarChar(50)")]
+		public string ma_tuong
+		{
+			get
+			{
+				return this._ma_tuong;
+			}
+			set
+			{
+				if ((this._ma_tuong != value))
+				{
+					this.Onma_tuongChanging(value);
+					this.SendPropertyChanging();
+					this._ma_tuong = value;
+					this.SendPropertyChanged("ma_tuong");
+					this.Onma_tuongChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_imageURLtuong", DbType="NVarChar(50)")]
+		public string imageURLtuong
+		{
+			get
+			{
+				return this._imageURLtuong;
+			}
+			set
+			{
+				if ((this._imageURLtuong != value))
+				{
+					this.OnimageURLtuongChanging(value);
+					this.SendPropertyChanging();
+					this._imageURLtuong = value;
+					this.SendPropertyChanged("imageURLtuong");
+					this.OnimageURLtuongChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name_tuong", DbType="NVarChar(50)")]
+		public string name_tuong
+		{
+			get
+			{
+				return this._name_tuong;
+			}
+			set
+			{
+				if ((this._name_tuong != value))
+				{
+					this.Onname_tuongChanging(value);
+					this.SendPropertyChanging();
+					this._name_tuong = value;
+					this.SendPropertyChanged("name_tuong");
+					this.Onname_tuongChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_acc", DbType="Int")]
+		public System.Nullable<int> id_acc
+		{
+			get
+			{
+				return this._id_acc;
+			}
+			set
+			{
+				if ((this._id_acc != value))
+				{
+					if (this._acc.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_accChanging(value);
+					this.SendPropertyChanging();
+					this._id_acc = value;
+					this.SendPropertyChanged("id_acc");
+					this.Onid_accChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="acc_Tuong", Storage="_acc", ThisKey="id_acc", OtherKey="id_acc", IsForeignKey=true)]
+		public acc acc
+		{
+			get
+			{
+				return this._acc.Entity;
+			}
+			set
+			{
+				acc previousValue = this._acc.Entity;
+				if (((previousValue != value) 
+							|| (this._acc.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._acc.Entity = null;
+						previousValue.Tuongs.Remove(this);
+					}
+					this._acc.Entity = value;
+					if ((value != null))
+					{
+						value.Tuongs.Add(this);
+						this._id_acc = value.id_acc;
+					}
+					else
+					{
+						this._id_acc = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("acc");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Cart")]
+	public partial class Cart : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _cartid;
+		
+		private System.Nullable<System.DateTime> _date;
+		
+		private System.Nullable<int> _idacc;
+		
+		private System.Nullable<decimal> _priceacc;
+		
+		private System.Nullable<decimal> _sotien;
+		
+		private string _userName;
+		
+		private EntityRef<acc> _acc;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OncartidChanging(int value);
+    partial void OncartidChanged();
+    partial void OndateChanging(System.Nullable<System.DateTime> value);
+    partial void OndateChanged();
+    partial void OnidaccChanging(System.Nullable<int> value);
+    partial void OnidaccChanged();
+    partial void OnpriceaccChanging(System.Nullable<decimal> value);
+    partial void OnpriceaccChanged();
+    partial void OnsotienChanging(System.Nullable<decimal> value);
+    partial void OnsotienChanged();
+    partial void OnuserNameChanging(string value);
+    partial void OnuserNameChanged();
+    #endregion
+		
+		public Cart()
+		{
+			this._acc = default(EntityRef<acc>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cartid", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int cartid
+		{
+			get
+			{
+				return this._cartid;
+			}
+			set
+			{
+				if ((this._cartid != value))
+				{
+					this.OncartidChanging(value);
+					this.SendPropertyChanging();
+					this._cartid = value;
+					this.SendPropertyChanged("cartid");
+					this.OncartidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_date", DbType="DateTime")]
+		public System.Nullable<System.DateTime> date
+		{
+			get
+			{
+				return this._date;
+			}
+			set
+			{
+				if ((this._date != value))
+				{
+					this.OndateChanging(value);
+					this.SendPropertyChanging();
+					this._date = value;
+					this.SendPropertyChanged("date");
+					this.OndateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idacc", DbType="Int")]
+		public System.Nullable<int> idacc
+		{
+			get
+			{
+				return this._idacc;
+			}
+			set
+			{
+				if ((this._idacc != value))
+				{
+					if (this._acc.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidaccChanging(value);
+					this.SendPropertyChanging();
+					this._idacc = value;
+					this.SendPropertyChanged("idacc");
+					this.OnidaccChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_priceacc", DbType="Decimal(10,2)")]
+		public System.Nullable<decimal> priceacc
+		{
+			get
+			{
+				return this._priceacc;
+			}
+			set
+			{
+				if ((this._priceacc != value))
+				{
+					this.OnpriceaccChanging(value);
+					this.SendPropertyChanging();
+					this._priceacc = value;
+					this.SendPropertyChanged("priceacc");
+					this.OnpriceaccChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sotien", DbType="Decimal(10,2)")]
+		public System.Nullable<decimal> sotien
+		{
+			get
+			{
+				return this._sotien;
+			}
+			set
+			{
+				if ((this._sotien != value))
+				{
+					this.OnsotienChanging(value);
+					this.SendPropertyChanging();
+					this._sotien = value;
+					this.SendPropertyChanged("sotien");
+					this.OnsotienChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userName", DbType="NVarChar(50)")]
+		public string userName
+		{
+			get
+			{
+				return this._userName;
+			}
+			set
+			{
+				if ((this._userName != value))
+				{
+					this.OnuserNameChanging(value);
+					this.SendPropertyChanging();
+					this._userName = value;
+					this.SendPropertyChanged("userName");
+					this.OnuserNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="acc_Cart", Storage="_acc", ThisKey="idacc", OtherKey="id_acc", IsForeignKey=true)]
+		public acc acc
+		{
+			get
+			{
+				return this._acc.Entity;
+			}
+			set
+			{
+				acc previousValue = this._acc.Entity;
+				if (((previousValue != value) 
+							|| (this._acc.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._acc.Entity = null;
+						previousValue.Carts.Remove(this);
+					}
+					this._acc.Entity = value;
+					if ((value != null))
+					{
+						value.Carts.Add(this);
+						this._idacc = value.id_acc;
+					}
+					else
+					{
+						this._idacc = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("acc");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -107,6 +745,18 @@ namespace DoAn_21806064393.Models
 		
 		private string _imageURL;
 		
+		private string _status;
+		
+		private string _theloai;
+		
+		private System.Nullable<int> _khuyenmai;
+		
+		private System.Nullable<decimal> _giasaukhuyenmai;
+		
+		private EntitySet<Tuong> _Tuongs;
+		
+		private EntitySet<Cart> _Carts;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -127,10 +777,20 @@ namespace DoAn_21806064393.Models
     partial void OngiaChanged();
     partial void OnimageURLChanging(string value);
     partial void OnimageURLChanged();
+    partial void OnstatusChanging(string value);
+    partial void OnstatusChanged();
+    partial void OntheloaiChanging(string value);
+    partial void OntheloaiChanged();
+    partial void OnkhuyenmaiChanging(System.Nullable<int> value);
+    partial void OnkhuyenmaiChanged();
+    partial void OngiasaukhuyenmaiChanging(System.Nullable<decimal> value);
+    partial void OngiasaukhuyenmaiChanged();
     #endregion
 		
 		public acc()
 		{
+			this._Tuongs = new EntitySet<Tuong>(new Action<Tuong>(this.attach_Tuongs), new Action<Tuong>(this.detach_Tuongs));
+			this._Carts = new EntitySet<Cart>(new Action<Cart>(this.attach_Carts), new Action<Cart>(this.detach_Carts));
 			OnCreated();
 		}
 		
@@ -294,6 +954,112 @@ namespace DoAn_21806064393.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="VarChar(50)")]
+		public string status
+		{
+			get
+			{
+				return this._status;
+			}
+			set
+			{
+				if ((this._status != value))
+				{
+					this.OnstatusChanging(value);
+					this.SendPropertyChanging();
+					this._status = value;
+					this.SendPropertyChanged("status");
+					this.OnstatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_theloai", DbType="VarChar(50)")]
+		public string theloai
+		{
+			get
+			{
+				return this._theloai;
+			}
+			set
+			{
+				if ((this._theloai != value))
+				{
+					this.OntheloaiChanging(value);
+					this.SendPropertyChanging();
+					this._theloai = value;
+					this.SendPropertyChanged("theloai");
+					this.OntheloaiChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_khuyenmai", DbType="Int")]
+		public System.Nullable<int> khuyenmai
+		{
+			get
+			{
+				return this._khuyenmai;
+			}
+			set
+			{
+				if ((this._khuyenmai != value))
+				{
+					this.OnkhuyenmaiChanging(value);
+					this.SendPropertyChanging();
+					this._khuyenmai = value;
+					this.SendPropertyChanged("khuyenmai");
+					this.OnkhuyenmaiChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_giasaukhuyenmai", DbType="Decimal(10,2)")]
+		public System.Nullable<decimal> giasaukhuyenmai
+		{
+			get
+			{
+				return this._giasaukhuyenmai;
+			}
+			set
+			{
+				if ((this._giasaukhuyenmai != value))
+				{
+					this.OngiasaukhuyenmaiChanging(value);
+					this.SendPropertyChanging();
+					this._giasaukhuyenmai = value;
+					this.SendPropertyChanged("giasaukhuyenmai");
+					this.OngiasaukhuyenmaiChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="acc_Tuong", Storage="_Tuongs", ThisKey="id_acc", OtherKey="id_acc")]
+		public EntitySet<Tuong> Tuongs
+		{
+			get
+			{
+				return this._Tuongs;
+			}
+			set
+			{
+				this._Tuongs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="acc_Cart", Storage="_Carts", ThisKey="id_acc", OtherKey="idacc")]
+		public EntitySet<Cart> Carts
+		{
+			get
+			{
+				return this._Carts;
+			}
+			set
+			{
+				this._Carts.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -313,165 +1079,237 @@ namespace DoAn_21806064393.Models
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+		
+		private void attach_Tuongs(Tuong entity)
+		{
+			this.SendPropertyChanging();
+			entity.acc = this;
+		}
+		
+		private void detach_Tuongs(Tuong entity)
+		{
+			this.SendPropertyChanging();
+			entity.acc = null;
+		}
+		
+		private void attach_Carts(Cart entity)
+		{
+			this.SendPropertyChanging();
+			entity.acc = this;
+		}
+		
+		private void detach_Carts(Cart entity)
+		{
+			this.SendPropertyChanging();
+			entity.acc = null;
+		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
-	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.GioHang")]
+	public partial class GioHang : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _id_user;
+		private int _id_giohang;
 		
-		private string _username;
+		private System.Nullable<int> _idnick;
 		
-		private string _password;
+		private System.Nullable<decimal> _gianick;
 		
-		private System.Nullable<int> _roles;
+		private string _image;
 		
-		private System.Nullable<decimal> _price;
+		private System.Nullable<decimal> _Total;
 		
-		private string _gmail;
+		private string _userN;
+		
+		private string _acc_count;
+		
+		private string _pass_word;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void Onid_userChanging(int value);
-    partial void Onid_userChanged();
-    partial void OnusernameChanging(string value);
-    partial void OnusernameChanged();
-    partial void OnpasswordChanging(string value);
-    partial void OnpasswordChanged();
-    partial void OnrolesChanging(System.Nullable<int> value);
-    partial void OnrolesChanged();
-    partial void OnpriceChanging(System.Nullable<decimal> value);
-    partial void OnpriceChanged();
-    partial void OngmailChanging(string value);
-    partial void OngmailChanged();
+    partial void Onid_giohangChanging(int value);
+    partial void Onid_giohangChanged();
+    partial void OnidnickChanging(System.Nullable<int> value);
+    partial void OnidnickChanged();
+    partial void OngianickChanging(System.Nullable<decimal> value);
+    partial void OngianickChanged();
+    partial void OnimageChanging(string value);
+    partial void OnimageChanged();
+    partial void OnTotalChanging(System.Nullable<decimal> value);
+    partial void OnTotalChanged();
+    partial void OnuserNChanging(string value);
+    partial void OnuserNChanged();
+    partial void Onacc_countChanging(string value);
+    partial void Onacc_countChanged();
+    partial void Onpass_wordChanging(string value);
+    partial void Onpass_wordChanged();
     #endregion
 		
-		public User()
+		public GioHang()
 		{
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_user", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id_user
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_giohang", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id_giohang
 		{
 			get
 			{
-				return this._id_user;
+				return this._id_giohang;
 			}
 			set
 			{
-				if ((this._id_user != value))
+				if ((this._id_giohang != value))
 				{
-					this.Onid_userChanging(value);
+					this.Onid_giohangChanging(value);
 					this.SendPropertyChanging();
-					this._id_user = value;
-					this.SendPropertyChanged("id_user");
-					this.Onid_userChanged();
+					this._id_giohang = value;
+					this.SendPropertyChanged("id_giohang");
+					this.Onid_giohangChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_username", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string username
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idnick", DbType="Int")]
+		public System.Nullable<int> idnick
 		{
 			get
 			{
-				return this._username;
+				return this._idnick;
 			}
 			set
 			{
-				if ((this._username != value))
+				if ((this._idnick != value))
 				{
-					this.OnusernameChanging(value);
+					this.OnidnickChanging(value);
 					this.SendPropertyChanging();
-					this._username = value;
-					this.SendPropertyChanged("username");
-					this.OnusernameChanged();
+					this._idnick = value;
+					this.SendPropertyChanged("idnick");
+					this.OnidnickChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_password", DbType="NVarChar(50)")]
-		public string password
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gianick", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> gianick
 		{
 			get
 			{
-				return this._password;
+				return this._gianick;
 			}
 			set
 			{
-				if ((this._password != value))
+				if ((this._gianick != value))
 				{
-					this.OnpasswordChanging(value);
+					this.OngianickChanging(value);
 					this.SendPropertyChanging();
-					this._password = value;
-					this.SendPropertyChanged("password");
-					this.OnpasswordChanged();
-				}
-			}
-		}
-        public string ConfirmPassword { get; set; }
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_roles", DbType="Int")]
-		public System.Nullable<int> roles
-		{
-			get
-			{
-				return this._roles;
-			}
-			set
-			{
-				if ((this._roles != value))
-				{
-					this.OnrolesChanging(value);
-					this.SendPropertyChanging();
-					this._roles = value;
-					this.SendPropertyChanged("roles");
-					this.OnrolesChanged();
+					this._gianick = value;
+					this.SendPropertyChanged("gianick");
+					this.OngianickChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price", DbType="Decimal(10,0)")]
-		public System.Nullable<decimal> price
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_image", DbType="NVarChar(255)")]
+		public string image
 		{
 			get
 			{
-				return this._price;
+				return this._image;
 			}
 			set
 			{
-				if ((this._price != value))
+				if ((this._image != value))
 				{
-					this.OnpriceChanging(value);
+					this.OnimageChanging(value);
 					this.SendPropertyChanging();
-					this._price = value;
-					this.SendPropertyChanged("price");
-					this.OnpriceChanged();
+					this._image = value;
+					this.SendPropertyChanged("image");
+					this.OnimageChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gmail", DbType="VarChar(50)")]
-		public string gmail
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Total
 		{
 			get
 			{
-				return this._gmail;
+				return this._Total;
 			}
 			set
 			{
-				if ((this._gmail != value))
+				if ((this._Total != value))
 				{
-					this.OngmailChanging(value);
+					this.OnTotalChanging(value);
 					this.SendPropertyChanging();
-					this._gmail = value;
-					this.SendPropertyChanged("gmail");
-					this.OngmailChanged();
+					this._Total = value;
+					this.SendPropertyChanged("Total");
+					this.OnTotalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userN", DbType="NVarChar(255)")]
+		public string userN
+		{
+			get
+			{
+				return this._userN;
+			}
+			set
+			{
+				if ((this._userN != value))
+				{
+					this.OnuserNChanging(value);
+					this.SendPropertyChanging();
+					this._userN = value;
+					this.SendPropertyChanged("userN");
+					this.OnuserNChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_acc_count", DbType="NVarChar(255)")]
+		public string acc_count
+		{
+			get
+			{
+				return this._acc_count;
+			}
+			set
+			{
+				if ((this._acc_count != value))
+				{
+					this.Onacc_countChanging(value);
+					this.SendPropertyChanging();
+					this._acc_count = value;
+					this.SendPropertyChanged("acc_count");
+					this.Onacc_countChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pass_word", DbType="NVarChar(255)")]
+		public string pass_word
+		{
+			get
+			{
+				return this._pass_word;
+			}
+			set
+			{
+				if ((this._pass_word != value))
+				{
+					this.Onpass_wordChanging(value);
+					this.SendPropertyChanging();
+					this._pass_word = value;
+					this.SendPropertyChanged("pass_word");
+					this.Onpass_wordChanged();
 				}
 			}
 		}

@@ -13,7 +13,7 @@ namespace DoAn_21806064393.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult baomat()
         {
             ViewBag.Message = "Your application description page.";
 

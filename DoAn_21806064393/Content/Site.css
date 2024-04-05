@@ -13,9 +13,13 @@
     font-weight: bold;
     margin-right: 10px;/* Chữ in đậm */
 }
-.navbar-nav .nav-item a:hover {
-    color: gray; /* Màu chữ khi di chuột qua */
-    --bs-nav-link-hover-color: transparent !important;
+.navbar-nav .nav-item .nav-link:hover {
+    color: #34b7eb !important; /* Thay đổi màu khi di chuột */
+}
+
+/* Màu khi được click */
+.navbar-nav .nav-item .nav-link:focus, .navbar-nav .nav-item .nav-link.active {
+    color: white !important; /* Thay đổi màu khi được click hoặc active */
 }
 .navbar-brand {
     margin-right: auto; /* Canh logo sang trái */

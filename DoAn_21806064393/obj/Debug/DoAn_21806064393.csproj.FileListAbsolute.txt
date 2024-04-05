@@ -83,3 +83,9 @@ C:\Users\Tan Qui\source\repos\DoAn_21806064393\DoAn_21806064393\obj\Debug\DoAn_2
 C:\Users\Tan Qui\source\repos\DoAn_21806064393\DoAn_21806064393\obj\Debug\DoAn_21806064393.csproj.CopyComplete
 C:\Users\Tan Qui\source\repos\DoAn_21806064393\DoAn_21806064393\obj\Debug\DoAn_21806064393.dll
 C:\Users\Tan Qui\source\repos\DoAn_21806064393\DoAn_21806064393\obj\Debug\DoAn_21806064393.pdb
+C:\Users\Tan Qui\source\repos\DoAn_21806064393\DoAn_21806064393\bin\PagedList.dll
+C:\Users\Tan Qui\source\repos\DoAn_21806064393\DoAn_21806064393\bin\PagedList.Mvc.dll
+C:\Users\Tan Qui\source\repos\DoAn_21806064393\DoAn_21806064393\bin\PagedList.xml
+C:\Users\Tan Qui\source\repos\DoAn_21806064393\DoAn_21806064393\bin\PagedList.Mvc.xml
+C:\Users\Tan Qui\source\repos\DoAn_21806064393\DoAn_21806064393\bin\BCrypt.Net.dll
+C:\Users\Tan Qui\source\repos\DoAn_21806064393\DoAn_21806064393\bin\BCrypt.Net.xml

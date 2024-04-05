@@ -10,12 +10,13 @@
     <title>_LayoutAdmin</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-       
+
 
         .admin-menu {
             background-color: #333;
             color: #fff;
             height: 100vh;
+           
         }
 
             .admin-menu a {
@@ -41,7 +42,7 @@
                 <h4>Admin Panel</h4>
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">@Session["UserName"]</a>
+                        <a class="nav-link" href="#">Xin Chào @Session["UserName"]</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("ThongKe", "Admin")">Thông Kê Tổng</a>
@@ -56,6 +57,7 @@
             </div>
             <div class="col-md-10 admin-content">
                 @RenderBody()
+                @RenderSection("upload", required: false)
             </div>
         </div>
     </div>

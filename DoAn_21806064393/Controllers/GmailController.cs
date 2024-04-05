@@ -18,7 +18,7 @@ namespace DoAn_21806064393.Controllers
         }
 
         [HttpPost]
-        public ActionResult Send( Gmail gmail)
+        public ActionResult Send(Gmail gmail)
         {
             // Kiểm tra xem email có phải là địa chỉ Gmail hợp lệ không
             if (!IsGmailAddress(gmail.To))
@@ -47,7 +47,7 @@ namespace DoAn_21806064393.Controllers
             {
                 ViewBag.Message = "Địa chỉ email không tồn tại trong hệ thống.";
                 return View();
-            }         
+            }
         }
         private bool IsGmailAddress(string email)
         {

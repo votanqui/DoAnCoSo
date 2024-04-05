@@ -1,0 +1,154 @@
+﻿@model IEnumerable<DoAn_21806064393.Models.GioHang>
+
+
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .custom-container {
+        background-color: rgba(0, 0, 0, 0.5); /* Màu đen với độ trong suốt 50% */
+        padding: 30px; /* Để tránh việc nội dung bị ẩn bởi background */
+        margin-top: 15px; /* Khoảng cách giữa container và phần trên */
+    }
+</style>
+<div class="container custom-container">
+    <h2 class="text-white">GioHang</h2>
+    <table class="table">
+        <tr>
+            <th class="text-white">Mã Nick</th>
+            <th class="text-white">Giá Nick</th>
+            <th class="text-white">Ảnh</th>
+            <th class="text-white">Tổng Tiền</th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-white">
+                    <input type="checkbox" class="idnick-checkbox" value="@item.idnick">
+                    @Html.DisplayFor(modelItem => item.idnick)
+                </td>
+                <td class="text-white">@Html.DisplayFor(modelItem => item.gianick)</td>
+                <td class="text-white">@Html.DisplayFor(modelItem => item.image)</td>
+                <td class="text-white">@Html.DisplayFor(modelItem => item.Total)</td>
+            </tr>
+        }
+
+    </table>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paymentModal">
+        Thanh toán
+    </button>
+    <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    @foreach (var item in Model)
+                    {
+                        <h5 class="modal-title" id="paymentModalLabel">Xác nhận thanh toán #@Html.DisplayFor(modelItem => item.idnick)</h5>
+                    }
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <p>Số tiền đang có: @Session["UserPrice"]</p>
+                    @foreach (var item in Model)
+                    {
+                        <p>Giá mua TK: @Html.DisplayFor(model => item.gianick)</p>
+                    }
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
+                    <button type="button" class="btn btn-primary" id="confirmPayment">Thanh toán</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="registerSuccessDiv" class="modal fade" tabindex="-1" aria-labelledby="registerSuccessDivLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    @foreach (var item in Model)
+                    {
+                        <h5 class="modal-title" id="registerSuccessDivLabel">Chúc Mừng Bạn Đã Mua Thành Công Tài Khoản#@Html.DisplayFor(model => item.idnick) </h5>
+                    }
+                    
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                @foreach (var item in Model)
+                {
+
+                    <p>Username: @Html.DisplayFor(modelItem => item.acc_count)<span id="username"></span></p>
+                    <p>Password: @Html.DisplayFor(modelItem => item.pass_word)<span id="password"></span></p>
+
+                }
+             
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+    $(document).ready(function(){
+
+        $("#showPaymentDiv").click(function(){
+            var userPrice = "@Session["UserPrice"]";
+            var accPrice = "@Html.DisplayFor(model => model.FirstOrDefault().gianick)";
+     $("#userPrice").text(userPrice);
+            $("#accPrice").text(accPrice);
+            $("#paymentDiv").show();
+        });
+        $("#cancelPayment").click(function(){
+            $("#paymentDiv").hide();
+        });
+        $("#confirmPayment").click(function () {
+            console.log("Click vào nút confirmPayment");
+            var userPrice = parseFloat("@Session["UserPrice"]");
+            var accountPrice = parseFloat("@Html.DisplayFor(model => model.FirstOrDefault().Total)");
+            var selectedIdnicks = []; 
+
+            $(".idnick-checkbox:checked").each(function () {
+                selectedIdnicks.push($(this).val());
+            });
+           if (userPrice >= accountPrice) {
+               var newPrice = userPrice - accountPrice;
+                $.ajax({
+               url: '/User/ThanhToan',
+                    type: 'POST',
+                    data: {
+                   newUserPrice: newPrice,
+                        idnicks: selectedIdnicks
+                    },
+                    success: function (response) {
+                             if (response.success) {
+                            $("#username");
+                            $("#password");
+                            $("#registerSuccessDiv").modal("show");
+                                 alert("Thanh toán thành công.");
+                                 setTimeout(function () {
+                                $("#paymentModal").modal("hide");
+                                 }, 2000);
+
+                             } else {
+                                 alert(response.error);
+                             }
+                         },
+                    error: function () {
+                             alert("Đã xảy ra lỗi khi gửi yêu cầu đến server.");
+                         }
+                     });
+                 } else {
+                     alert("Số tiền trong tài khoản không đủ để thanh toán.");
+                 }
+             });
+});
+</script>

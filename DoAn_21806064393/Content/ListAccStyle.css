@@ -24,12 +24,12 @@
 }
 .yellow-text {
     color: yellow;
-    font-weight: bold; /* Chữ đậm */
     border: 2px solid yellow; /* Border cong 2px màu vàng */
     border-radius: 4px;
-    padding: 10px 15px;
-    margin:0;
-
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom:4px;
+    margin: 0;
 }
 .price {
     display: flex;

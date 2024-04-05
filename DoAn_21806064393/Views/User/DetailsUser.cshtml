@@ -1,0 +1,112 @@
+﻿@model DoAn_21806064393.Models.User
+
+@{
+    ViewBag.Title = "DetailsUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container custom-container">
+    <div class="row">
+        <div class="col-md-12 center-text">
+            <h3 class="yellow-text">THÔNG TIN CÁ NHÂN</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <dl class="dl-horizontal">
+                <dd class="white-text">
+                    Tên tài khoản
+                </dd>
+                <dd class="white-text">
+                    Mật Khẩu
+                </dd>
+                <dd class="white-text">
+                    Số Dư
+                </dd>
+                <dd class="white-text">
+                    Mail
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-7">
+            <dl class="dl-horizontal">
+                <dd class="white-text">
+                    @Html.DisplayFor(model => model.username)
+                </dd>
+                <dd class="white-text password-container">
+                    <input type="password" id="passwordInput" value="@ViewBag.DecryptedPassword" readonly style="width: 80%; border: none; background-color: transparent; color:white;" />
+                   
+                    <button id="togglePassword" onclick="togglePasswordVisibility()" class="password-toggle">Show/Hide</button>
+                </dd>
+                <dd class="white-text">
+                    @Html.DisplayFor(model => model.price)
+                </dd>
+                <dd class="white-text">
+                    @Html.DisplayFor(model => model.gmail)
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id_user }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>
+
+<style>
+    .custom-container {
+        background-color: rgba(0, 0, 0, 0.5); 
+        padding: 30px; 
+        margin-top: 15px; 
+    }
+
+    .white-text {
+        color: white;
+    }
+
+    .yellow-text {
+        color: yellow;
+    }
+
+    .center-text {
+        text-align: center;
+    }
+
+    .password-container {
+        position: relative;
+        display: flex; 
+        background-color: rgba(0, 0, 0, 0.5);
+        border: 2px solid yellow;
+        padding: 5px;
+    }
+
+    .password-toggle {
+        background-color: yellow;
+        border: 2px solid yellow;
+        color: black;
+        cursor: pointer;
+        width: 15%;
+    }
+
+        .password-toggle:hover {
+            background-color: transparent;
+            color: yellow;
+        }
+</style>
+<script>
+    function togglePasswordVisibility() {
+        var passwordInput = document.getElementById("passwordInput");
+        var password = document.getElementById("password");
+        var toggleButton = document.getElementById("togglePassword");
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            password.style.visibility = "hidden";
+            toggleButton.textContent = "Hide";
+        } else {
+            passwordInput.type = "password";
+            password.style.visibility = "visible"; 
+            toggleButton.textContent = "Show ";
+        }
+    }
+</script>
