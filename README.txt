@@ -1,5 +1,6 @@
 đầu tiên cần chạy file script này vào sql :
 ------------------------------------------------------------------------------
+CREATE DATABASE webaccgame;
 USE [webaccgame]
 GO
 /****** Object:  Table [dbo].[acc]    Script Date: 05/04/2024 2:07:18 CH ******/
