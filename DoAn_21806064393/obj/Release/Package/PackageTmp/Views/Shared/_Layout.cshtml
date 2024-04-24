@@ -1,0 +1,349 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> ShopCuaQui</title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/LayoutScript.js"></script>
+    <script src="https://kit.fontawesome.com/1f9baf8be7.js" crossorigin="anonymous"></script>
+</head>
+@{
+    bool isLoggedIn = Session["LoggedInUser"] != null;
+}
+
+<body>
+    <header class="mx-auto w-full max-w-6xl px-2 bg-black flex flex-wrap items-center py-2 sl-header ">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                        <img src="~/Content/images/logoshop.jpg" alt="Logo" height="30" />
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Index", "Home")">Trang Chủ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Contact", "Home")">Hướng Dẫn Mua Acc</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("baomat", "Home")">Hướng Dẫn Bảo Mật</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("GioHang", "User")"><i class="fa-solid fa-cart-shopping"></i></a>
+                            </li>
+
+                            @if (!isLoggedIn)
+                            {
+
+                                <li class="nav-item special-border">
+                                    <a class="nav-link" href="@Url.Action("Login", "User")" id="openLoginModal"><i class="fa-solid fa-user"></i>Đăng nhập</a>
+                                </li>
+                                <li class="nav-item special-border">
+                                    <a class="nav-link" href="@Url.Action("registern", "User")" id="openSignupModal"><i class="fa-solid fa-user-plus"></i>Đăng ký</a>
+                                </li>
+
+
+
+                            }
+                            else
+                            {
+
+                                var userRole = (int)Session["UserRole"];
+                                if (userRole == 0) // Nếu là user
+                                {
+                                    <li class="nav-item ">
+                                        <a class="nav-link" href="#" id="userInfoDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa-solid fa-user"></i>
+                                            @{
+                                                // Lấy giá trị từ Session và chuyển đổi thành số nguyên (nếu cần)
+                                                var sessionPrice = Convert.ToInt32(Session["UserPrice"]);
+                                            }
+
+                                            <td class="sotien">@String.Format("{0:#,##0}", sessionPrice)VND </td>
+
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="userInfoDropdown">
+                                            @{
+                                                var loggedInUser = Session["LoggedInUser"] as DoAn_21806064393.Models.User;
+                                            }
+                                            <a class="dropdown-item" href="@Url.Action("DetailsUser", "User", new { id = loggedInUser != null ? loggedInUser.id_user : 0 })">Thông tin</a>
+                                            <a class="dropdown-item" href="@Url.Action("AccDaMua", "User", new { id = loggedInUser != null ? loggedInUser.id_user : 0 })">Acc Mua</a>
+                                            <a class="dropdown-item" href="@Url.Action("ttnaptien", "Home", new { id = loggedInUser != null ? loggedInUser.id_user : 0 })">Nạp tiền</a>
+                                            <a class="dropdown-item" href="@Url.Action("Logout", "User")">Đăng xuất</a>
+                                        </div>
+                                    </li>
+                                }
+                                else if (userRole == 1) // Nếu là admin
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#" id="userInfoDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa-solid fa-user-tie"></i>
+                                            <span class="user-role">QTV</span>
+                                            <span class="user-price">Có: @Session["UserPrice"]VND</span>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="userInfoDropdown">
+                                            <a class="dropdown-item logout-link" href="@Url.Action("doanhthu", "Admin")">Quản Lý</a>
+                                            <a class="dropdown-item logout-link" href="@Url.Action("Logout", "User")">Đăng xuất</a>
+                                        </div>
+                                    </li>
+
+                                }
+                                else if (userRole == 2) // Nếu là cộng tác viên
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#" id="userInfoDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa-solid fa-user-tie"></i>
+                                            <span class="user-role">CTV</span>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="userInfoDropdown">
+                                            <a class="dropdown-item logout-link" href="@Url.Action("listaccCTV", "collaborators")">Quản Lý</a>
+                                            <a class="dropdown-item logout-link" href="@Url.Action("Logout", "User")">Đăng xuất</a>
+                                        </div>
+                                    </li>
+
+                                }
+                                else if (userRole == 3) // Nếu là nhân viên
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#" id="userInfoDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa-solid fa-user-tie"></i>
+                                            <span class="user-role">Nhân Viên</span>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="userInfoDropdown">
+                                            <a class="dropdown-item logout-link" href="@Url.Action("userNV", "Employer")">Quản Lý</a>
+                                            <a class="dropdown-item logout-link" href="@Url.Action("Logout", "User")">Đăng xuất</a>
+                                        </div>
+                                    </li>
+
+                                }
+                            }
+</div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <div class="row " style="margin-top: 15px;">
+            <div class="col-sm-3 ">
+                <div class="button-container flex color-grant font-bold">
+                    <button type="button" id="napButton" class="btn" onclick="showNapThe()">NẠP THẺ</button>
+                    <button type="button" id="topNapButton" class="btn" onclick="showTopNapThe()">TOP NẠP THẺ</button>
+                </div>
+                <div id="napTheContainer" style="display: none;">
+                    <form id="napTheForm">
+                        <div class="form-group text-white">
+                            <label for="selectNhaMang">Chọn nhà mạng:</label>
+                            <select class="form-control" id="selectNhaMang">
+                                <option value="">Chọn nhà mạng</option>
+                                <option value="VIETTEL">VIETTEL</option>
+                                <option value="VINAPHONE">VINAPHONE</option>
+                                <option value="MOBIFONE">MOBIFONE</option>
+                            </select>
+                        </div>
+                        <div class="form-group text-white">
+                            <label for="selectMenhGia">Chọn mệnh giá:</label>
+                            <select class="form-control" id="selectMenhGia">
+                                <option value="">Chọn mệnh giá</option>
+                                <option value="10000">10.000 VNĐ - (nhận 70%)</option>
+                                <option value="20000">20.000 VNĐ - (nhận 70%)</option>
+                                <option value="50000">50.000 VNĐ - (nhận 70%)</option>
+                                <option value="100000">100.000 VNĐ - (nhận 70%)</option>
+                                <option value="200000">200.000 VNĐ - (nhận 70%)</option>
+                                <option value="300000">300.000 VNĐ - (nhận 70%)</option>
+                                <option value="500000">500.000 VNĐ - (nhận 70%)</option>
+                                <option value="1000000">1.000.000 VNĐ - (nhận 70%)</option>
+                            </select>
+                        </div>
+                        <div class="form-group text-white">
+                            <label for="seri">Số seri:</label>
+                            <input type="text" class="form-control" id="seri">
+                        </div>
+                        <div class="form-group text-white">
+                            <label for="maThe">Mã thẻ:</label>
+                            <input type="text" class="form-control" id="maThe">
+                        </div>
+                        <button type="button" class="btn-nap-the" id="napTheButton">Nạp thẻ</button>
+                    </form>
+                </div>
+
+                <div id="topNapTheContainer" class="top-nap-the-container" style="display: none;">
+
+                </div>
+            </div>
+            <div class="col-sm-9" style="padding:0;">
+                <div style="background-color: #eaeaea;">
+                    <img src="~/images/shopacc.png" width="100%" />
+                </div>
+            </div>
+        </div>
+    </div>
+    @RenderBody()
+
+    <hr />
+
+    <div id="modalSignup" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Đăng ký</h4>
+                    <button type="button" class="close" data-dismiss="modal" id="closeSignupModal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <input type="text" class="form-control" id="username" placeholder="Nhập username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" class="form-control" id="email" placeholder="Nhập email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Mật khẩu:</label>
+                            <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Nhập lại mật khẩu:</label>
+                            <input type="password" class="form-control" id="confirmPassword" placeholder="Nhập lại mật khẩu" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Đăng ký</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modalLogin" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Đăng nhập</h4>
+                    <button type="button" class="close" data-dismiss="modal" id="closeLoginModal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <input type="text" class="form-control" id="username" placeholder="Nhập username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Mật khẩu:</label>
+                            <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Đăng nhập</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer-container">
+        <p>HỆ THỐNG BÁN ACC TỰ ĐỘNG</p>
+        <p>ĐẢM BẢO UY TÍN VÀ CHẤT LƯỢNG.</p>
+        <p>CHÚNG TÔI LUÔN LẤY UY TÍN LÀM HÀNG ĐẦU ĐỐI VỚI KHÁCH HÀNG. HI VỌNG SẼ ĐƯỢC PHỤC VỤ CÁC BẠN. CẢM ƠN!</p>
+        <p>Số điện thoại: 123456789</p>
+        <p>Email: nhom8vippro@gmail.com</p>
+    </footer>
+
+    <style>
+        .navbar-nav .nav-item .nav-link:hover {
+            color: white !important;
+        }
+
+        .navbar-nav .nav-item .nav-link:focus, .navbar-nav .nav-item .nav-link.active {
+            color: white !important;
+        }
+
+        .footer-container {
+            background-color: black;
+            color: gold;
+            text-align: center;
+            padding: 20px;
+        }
+
+            .footer-container p {
+                margin: 5px 0;
+            }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var userIcon = document.querySelector('.nav-link .fa-solid.fa-user');
+            var dropdownMenu = document.querySelector('.dropdown-menu');
+
+            userIcon.addEventListener('click', function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                if (dropdownMenu.style.display === 'block') {
+                    dropdownMenu.style.display = 'none';
+                } else {
+                    dropdownMenu.style.display = 'block';
+                }
+            });
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            var userIcon = document.querySelector('.nav-link .fa-solid.fa-user-tie');
+            var dropdownMenu = document.querySelector('.dropdown-menu');
+
+            userIcon.addEventListener('click', function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                if (dropdownMenu.style.display === 'block') {
+                    dropdownMenu.style.display = 'none';
+                } else {
+                    dropdownMenu.style.display = 'block';
+                }
+            });
+        });
+        $(document).ready(function () {
+            $("#napTheButton").click(function () {
+                var nhaMang = $("#selectNhaMang").val();
+                var menhGia = $("#selectMenhGia").val();
+                var seri = $("#seri").val();
+                var maThe = $("#maThe").val();
+                var isLoggedIn = @(Session["LoggedInUser"] != null ? "true" : "false");
+                if (!isLoggedIn) {
+                    alert("Vui lòng đăng nhập để thực hiện nạp thẻ.");
+                    window.location.href = "/User/Login";
+                    return;
+                }
+                if (nhaMang === "" || menhGia === "" || seri === "" || maThe === "") {
+                    alert("Vui lòng nhập đầy đủ thông tin");
+                    return;
+                }
+                $.ajax({
+                    url: '/Home/napthe',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        nhaMang: nhaMang,
+                        menhGia: menhGia,
+                        seri: seri,
+                        maThe: maThe
+                    },
+                    success: function (response) {
+                        alert("Thẻ Đang Được Xử Lí.");
+                        console.log(response);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        });
+
+    </script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

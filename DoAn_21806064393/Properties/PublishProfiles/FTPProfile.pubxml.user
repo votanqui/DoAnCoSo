@@ -1,0 +1,1050 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA4NrN3xuvjkiNEjOVslyawQAAAAACAAAAAAAQZgAAAAEAACAAAACNjlUOx86l3O1Kmc6joftNzJb+fZA4Cul4AhmSZvNKgwAAAAAOgAAAAAIAACAAAACYmpjWNt40cxFXDIJUO9rWhuqS7jfpEViHSxqkkzX1PSAAAAAsshEH++Q7kH1KCgce+GshCneZqxaFEFQ3iuryp9d1f0AAAADZZw54nj7NYYpu/NDXjoi82xk/Z70SDwpkIwgj1rZJRGxrrIN9pJj1S1/e07ql3ed6a7Hj/E0g/CWu2koKsGYH</EncryptedPassword>
+    <_PublishTargetUrl>ftp://ftpupload.net</_PublishTargetUrl>
+    <History>True|2024-04-18T15:57:20.8321558Z;False|2024-04-18T22:22:38.1849543+07:00;False|2024-04-18T22:19:38.3038426+07:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>09/10/2013 16:29:20</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.pdb">
+      <publishTime>09/10/2013 16:29:20</publishTime>
+    </File>
+    <File Include="bin/BCrypt.Net.dll">
+      <publishTime>05/05/2011 01:49:00</publishTime>
+    </File>
+    <File Include="bin/DoAn_21806064393.dll">
+      <publishTime>04/18/2024 22:19:24</publishTime>
+    </File>
+    <File Include="bin/DoAn_21806064393.pdb">
+      <publishTime>04/18/2024 22:19:24</publishTime>
+    </File>
+    <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
+      <publishTime>09/05/2018 16:10:50</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>05/27/2022 23:39:10</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>04/22/2019 01:06:16</publishTime>
+    </File>
+    <File Include="bin/PagedList.dll">
+      <publishTime>10/01/2013 00:36:38</publishTime>
+    </File>
+    <File Include="bin/PagedList.Mvc.dll">
+      <publishTime>10/01/2013 01:15:20</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe">
+      <publishTime>08/08/2018 05:38:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe.config">
+      <publishTime>08/08/2018 12:18:12</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.rsp">
+      <publishTime>08/08/2018 12:09:42</publishTime>
+    </File>
+    <File Include="bin/roslyn/csi.exe">
+      <publishTime>08/08/2018 05:38:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/csi.exe.config">
+      <publishTime>08/08/2018 12:18:34</publishTime>
+    </File>
+    <File Include="bin/roslyn/csi.rsp">
+      <publishTime>08/08/2018 12:09:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
+      <publishTime>08/08/2018 05:38:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
+      <publishTime>08/08/2018 05:38:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.Scripting.dll">
+      <publishTime>08/08/2018 05:38:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
+      <publishTime>08/08/2018 05:38:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.Scripting.dll">
+      <publishTime>08/08/2018 05:38:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
+      <publishTime>08/08/2018 05:38:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
+      <publishTime>08/08/2018 12:09:42</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.DiaSymReader.Native.amd64.dll">
+      <publishTime>12/05/2017 09:36:44</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.DiaSymReader.Native.x86.dll">
+      <publishTime>12/05/2017 09:36:44</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Managed.Core.targets">
+      <publishTime>08/08/2018 12:09:42</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
+      <publishTime>08/08/2018 12:09:42</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Win32.Primitives.dll">
+      <publishTime>11/05/2016 18:55:32</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.AppContext.dll">
+      <publishTime>11/05/2016 18:55:34</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Collections.Immutable.dll">
+      <publishTime>05/16/2018 03:29:34</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Console.dll">
+      <publishTime>11/05/2016 18:55:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Diagnostics.DiagnosticSource.dll">
+      <publishTime>11/05/2016 18:55:52</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Diagnostics.FileVersionInfo.dll">
+      <publishTime>11/05/2016 18:55:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Diagnostics.StackTrace.dll">
+      <publishTime>11/05/2016 18:55:52</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Globalization.Calendars.dll">
+      <publishTime>11/05/2016 18:56:02</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.IO.Compression.dll">
+      <publishTime>11/05/2016 18:56:08</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.IO.Compression.ZipFile.dll">
+      <publishTime>11/05/2016 18:56:04</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.IO.FileSystem.dll">
+      <publishTime>11/05/2016 18:56:08</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.IO.FileSystem.Primitives.dll">
+      <publishTime>11/05/2016 18:56:08</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Net.Http.dll">
+      <publishTime>11/05/2016 18:56:30</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Net.Sockets.dll">
+      <publishTime>11/05/2016 18:56:34</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Reflection.Metadata.dll">
+      <publishTime>05/16/2018 03:29:44</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Runtime.InteropServices.RuntimeInformation.dll">
+      <publishTime>11/05/2016 18:57:00</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Security.Cryptography.Algorithms.dll">
+      <publishTime>11/05/2016 18:57:14</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Security.Cryptography.Encoding.dll">
+      <publishTime>11/05/2016 18:57:08</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Security.Cryptography.Primitives.dll">
+      <publishTime>11/05/2016 18:57:18</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Security.Cryptography.X509Certificates.dll">
+      <publishTime>11/05/2016 18:57:18</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Text.Encoding.CodePages.dll">
+      <publishTime>11/05/2016 18:57:20</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Threading.Tasks.Extensions.dll">
+      <publishTime>11/05/2016 18:57:24</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.ValueTuple.dll">
+      <publishTime>11/05/2016 18:57:30</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Xml.ReaderWriter.dll">
+      <publishTime>11/05/2016 18:57:36</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Xml.XmlDocument.dll">
+      <publishTime>11/05/2016 18:57:34</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Xml.XPath.dll">
+      <publishTime>11/05/2016 18:57:40</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Xml.XPath.XDocument.dll">
+      <publishTime>11/05/2016 18:57:34</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe">
+      <publishTime>08/08/2018 05:38:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe.config">
+      <publishTime>08/08/2018 12:18:18</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.rsp">
+      <publishTime>08/08/2018 12:09:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe">
+      <publishTime>08/08/2018 05:38:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe.config">
+      <publishTime>08/08/2018 12:18:16</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>05/27/2022 23:41:34</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>05/27/2022 23:41:54</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>05/27/2022 23:41:46</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>05/27/2022 23:41:54</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>05/27/2022 23:42:20</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>02/11/2014 15:26:04</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>05/27/2022 23:42:06</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>05/27/2022 23:42:46</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>05/27/2022 23:42:16</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>05/27/2022 23:42:50</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>01/23/2014 13:57:34</publishTime>
+    </File>
+    <File Include="Content/bootstrap-grid.css">
+      <publishTime>03/16/2024 21:22:49</publishTime>
+    </File>
+    <File Include="Content/bootstrap-grid.css.map">
+      <publishTime>03/16/2024 21:22:49</publishTime>
+    </File>
+    <File Include="Content/bootstrap-grid.min.css">
+      <publishTime>03/16/2024 21:22:49</publishTime>
+    </File>
+    <File Include="Content/bootstrap-grid.min.css.map">
+      <publishTime>03/16/2024 21:22:49</publishTime>
+    </File>
+    <File Include="Content/bootstrap-grid.rtl.css">
+      <publishTime>03/16/2024 21:22:49</publishTime>
+    </File>
+    <File Include="Content/bootstrap-grid.rtl.css.map">
+      <publishTime>03/16/2024 21:22:49</publishTime>
+    </File>
+    <File Include="Content/bootstrap-grid.rtl.min.css">
+      <publishTime>03/16/2024 21:22:49</publishTime>
+    </File>
+    <File Include="Content/bootstrap-grid.rtl.min.css.map">
+      <publishTime>03/16/2024 21:22:49</publishTime>
+    </File>
+    <File Include="Content/bootstrap-reboot.css">
+      <publishTime>03/16/2024 21:22:49</publishTime>
+    </File>
+    <File Include="Content/bootstrap-reboot.css.map">
+      <publishTime>03/16/2024 21:22:49</publishTime>
+    </File>
+    <File Include="Content/bootstrap-reboot.min.css">
+      <publishTime>03/16/2024 21:22:49</publishTime>
+    </File>
+    <File Include="Content/bootstrap-reboot.min.css.map">
+      <publishTime>03/16/2024 21:22:49</publishTime>
+    </File>
+    <File Include="Content/bootstrap-reboot.rtl.css">
+      <publishTime>03/16/2024 21:22:49</publishTime>
+    </File>
+    <File Include="Content/bootstrap-reboot.rtl.css.map">
+      <publishTime>03/16/2024 21:22:49</publishTime>
+    </File>
+    <File Include="Content/bootstrap-reboot.rtl.min.css">
+      <publishTime>03/16/2024 21:22:49</publishTime>
+    </File>
+    <File Include="Content/bootstrap-reboot.rtl.min.css.map">
+      <publishTime>03/16/2024 21:22:49</publishTime>
+    </File>
+    <File Include="Content/bootstrap-utilities.css">
+      <publishTime>03/16/2024 21:22:49</publishTime>
+    </File>
+    <File Include="Content/bootstrap-utilities.css.map">
+      <publishTime>03/16/2024 21:22:49</publishTime>
+    </File>
+    <File Include="Content/bootstrap-utilities.min.css">
+      <publishTime>03/16/2024 21:22:49</publishTime>
+    </File>
+    <File Include="Content/bootstrap-utilities.min.css.map">
+      <publishTime>03/16/2024 21:22:49</publishTime>
+    </File>
+    <File Include="Content/bootstrap-utilities.rtl.css">
+      <publishTime>03/16/2024 21:22:49</publishTime>
+    </File>
+    <File Include="Content/bootstrap-utilities.rtl.css.map">
+      <publishTime>03/16/2024 21:22:49</publishTime>
+    </File>
+    <File Include="Content/bootstrap-utilities.rtl.min.css">
+      <publishTime>03/16/2024 21:22:49</publishTime>
+    </File>
+    <File Include="Content/bootstrap-utilities.rtl.min.css.map">
+      <publishTime>03/16/2024 21:22:49</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>03/30/2024 11:01:48</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css.map">
+      <publishTime>03/16/2024 21:22:49</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>03/30/2024 11:04:28</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css.map">
+      <publishTime>03/16/2024 21:22:49</publishTime>
+    </File>
+    <File Include="Content/bootstrap.rtl.css">
+      <publishTime>03/16/2024 21:22:49</publishTime>
+    </File>
+    <File Include="Content/bootstrap.rtl.css.map">
+      <publishTime>03/16/2024 21:22:49</publishTime>
+    </File>
+    <File Include="Content/bootstrap.rtl.min.css">
+      <publishTime>03/16/2024 21:22:49</publishTime>
+    </File>
+    <File Include="Content/bootstrap.rtl.min.css.map">
+      <publishTime>03/16/2024 21:22:48</publishTime>
+    </File>
+    <File Include="Content/images/Acc dtcl.png">
+      <publishTime>04/10/2024 20:29:37</publishTime>
+    </File>
+    <File Include="Content/images/acc1.jpg">
+      <publishTime>04/17/2024 22:01:36</publishTime>
+    </File>
+    <File Include="Content/images/acc2.jpg">
+      <publishTime>04/18/2024 13:51:41</publishTime>
+    </File>
+    <File Include="Content/images/logoshop.jpg">
+      <publishTime>04/11/2024 12:46:57</publishTime>
+    </File>
+    <File Include="Content/images/qr-mbbank.jpg">
+      <publishTime>04/15/2024 10:47:45</publishTime>
+    </File>
+    <File Include="Content/images/qr-thanhtoan.jpg">
+      <publishTime>04/10/2024 18:47:36</publishTime>
+    </File>
+    <File Include="Content/images_tuong/Annie.png">
+      <publishTime>03/27/2024 09:02:38</publishTime>
+    </File>
+    <File Include="Content/ListAccStyle.css">
+      <publishTime>03/30/2024 21:15:54</publishTime>
+    </File>
+    <File Include="Content/PagedList.css">
+      <publishTime>03/28/2024 10:15:33</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>04/02/2024 12:59:15</publishTime>
+    </File>
+    <File Include="Content/SytleIndex.css">
+      <publishTime>03/22/2024 20:52:08</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>03/16/2024 21:22:43</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>03/16/2024 21:22:43</publishTime>
+    </File>
+    <File Include="images/Aatrox.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Acc Liên Minh Tự Chọn.png">
+      <publishTime>04/18/2024 22:23:56</publishTime>
+    </File>
+    <File Include="images/Ahri.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Akali.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Akshan.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Alistar.png">
+      <publishTime>04/13/2024 14:30:16</publishTime>
+    </File>
+    <File Include="images/Amumu.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Anivia.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Annie.png">
+      <publishTime>04/13/2024 14:31:15</publishTime>
+    </File>
+    <File Include="images/Aphelios.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Ashe.png">
+      <publishTime>04/13/2024 14:30:16</publishTime>
+    </File>
+    <File Include="images/Aurelion Sol.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Azir.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/bannershopacc.jpg">
+      <publishTime>03/17/2024 13:13:12</publishTime>
+    </File>
+    <File Include="images/Bard.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Bel%27Veth.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/bg_new.jpg">
+      <publishTime>03/17/2024 20:15:42</publishTime>
+    </File>
+    <File Include="images/Blitzcrank.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Brand.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Braum.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Briar.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Caitlyn.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Camille.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Cassiopeia.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Cho%27Gath.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Corki.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Darius.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Diana.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Dr. Mundo.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Draven.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Ekko.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Elise.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Evelynn.png">
+      <publishTime>04/13/2024 19:18:27</publishTime>
+    </File>
+    <File Include="images/Ezreal.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Fiddlesticks.png">
+      <publishTime>04/13/2024 14:30:16</publishTime>
+    </File>
+    <File Include="images/Fiora.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Fizz.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Galio.png">
+      <publishTime>04/13/2024 14:30:16</publishTime>
+    </File>
+    <File Include="images/Gangplank.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Garen.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Gnar.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Gragas.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Graves.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Gwen.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Hecarim.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Heimerdinger.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Hwei.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Illaoi.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Irelia.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Ivern.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Janna.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Jarvan IV.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Jax.png">
+      <publishTime>04/13/2024 14:30:16</publishTime>
+    </File>
+    <File Include="images/Jayce.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Jhin.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Jinx.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/K%27Sante.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Kai%27Sa.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Kalista.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Karma.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Karthus.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Kassadin.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Katarina.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Kayle.png">
+      <publishTime>04/13/2024 14:30:16</publishTime>
+    </File>
+    <File Include="images/Kayn.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Kennen.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Kha%27Zix.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Kindred.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Kled.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Kog%27Maw.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/LeBlanc.png">
+      <publishTime>04/13/2024 14:30:16</publishTime>
+    </File>
+    <File Include="images/Lee Sin.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Leona.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Lillia.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Lissandra.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/logo_doan.png">
+      <publishTime>03/16/2024 23:39:08</publishTime>
+    </File>
+    <File Include="images/Lucian.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Lulu.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Lux.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Malphite.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Malzahar.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Maokai.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Master Yi.png">
+      <publishTime>04/13/2024 14:30:16</publishTime>
+    </File>
+    <File Include="images/Milio.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Miss Fortune.png">
+      <publishTime>04/13/2024 14:30:16</publishTime>
+    </File>
+    <File Include="images/Mordekaiser.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Morgana.png">
+      <publishTime>04/13/2024 14:30:16</publishTime>
+    </File>
+    <File Include="images/Naafiri.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Nami.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Nasus.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Nautilus.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Neeko.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Ngộ Không.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Nidalee.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Nilah.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Nocturne.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Nunu &amp; Willump.png">
+      <publishTime>04/13/2024 14:30:16</publishTime>
+    </File>
+    <File Include="images/Olaf.png">
+      <publishTime>04/13/2024 14:30:16</publishTime>
+    </File>
+    <File Include="images/Orianna.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Ornn.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Pantheon.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Poppy.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Pyke.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Qiyana.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Quinn.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Rakan.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Rammus.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Rek%27Sai.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Rell.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Renata Glasc.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Renekton.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Rengar.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Riven.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Rumble.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Ryze.png">
+      <publishTime>04/13/2024 14:30:16</publishTime>
+    </File>
+    <File Include="images/Samira.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Sejuani.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Senna.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Seraphine.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Sett.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Shaco.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Shen.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/shopacc.png">
+      <publishTime>03/17/2024 13:17:43</publishTime>
+    </File>
+    <File Include="images/Shyvana.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Singed.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Sion.png">
+      <publishTime>04/13/2024 14:30:16</publishTime>
+    </File>
+    <File Include="images/Sivir.png">
+      <publishTime>04/13/2024 14:30:16</publishTime>
+    </File>
+    <File Include="images/Skarner.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Smolder.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Sona.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Soraka.png">
+      <publishTime>04/13/2024 14:30:16</publishTime>
+    </File>
+    <File Include="images/Swain.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Sylas.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Syndra.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Tahm Kench.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Taliyah.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Talon.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Taric.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Teemo.png">
+      <publishTime>04/13/2024 14:30:16</publishTime>
+    </File>
+    <File Include="images/Thresh.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Tristana.png">
+      <publishTime>04/13/2024 14:30:16</publishTime>
+    </File>
+    <File Include="images/Trundle.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Tryndamere.png">
+      <publishTime>04/13/2024 14:30:16</publishTime>
+    </File>
+    <File Include="images/Twisted.png">
+      <publishTime>04/13/2024 14:30:16</publishTime>
+    </File>
+    <File Include="images/Twitch.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Udyr.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Urgot.png">
+      <publishTime>04/13/2024 14:30:16</publishTime>
+    </File>
+    <File Include="images/Varus.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Vayne.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Veigar.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Vel%27Koz.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Vex.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Vi.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Viego.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Viktor.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Vladimir.png">
+      <publishTime>04/13/2024 14:30:16</publishTime>
+    </File>
+    <File Include="images/Volibear.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Warwick.png">
+      <publishTime>04/13/2024 14:30:16</publishTime>
+    </File>
+    <File Include="images/Xayah.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Xerath.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Xin Zhao.png">
+      <publishTime>04/13/2024 14:30:16</publishTime>
+    </File>
+    <File Include="images/Yasuo.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Yone.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Yorick.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Yuumi.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Zac.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Zed.png">
+      <publishTime>04/13/2024 19:18:27</publishTime>
+    </File>
+    <File Include="images/Zeri.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Ziggs.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Zilean.png">
+      <publishTime>04/13/2024 19:18:27</publishTime>
+    </File>
+    <File Include="images/Zoe.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="images/Zyra.png">
+      <publishTime>04/13/2024 17:03:49</publishTime>
+    </File>
+    <File Include="Models/DataClasses1.dbml">
+      <publishTime>04/15/2024 13:07:30</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.bundle.js">
+      <publishTime>03/16/2024 21:22:48</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.bundle.js.map">
+      <publishTime>03/16/2024 21:22:48</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.bundle.min.js">
+      <publishTime>03/16/2024 21:22:48</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.bundle.min.js.map">
+      <publishTime>03/16/2024 21:22:48</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.esm.js">
+      <publishTime>03/16/2024 21:22:48</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.esm.js.map">
+      <publishTime>03/16/2024 21:22:48</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.esm.min.js">
+      <publishTime>03/16/2024 21:22:48</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.esm.min.js.map">
+      <publishTime>03/16/2024 21:22:48</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>03/16/2024 21:22:48</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js.map">
+      <publishTime>03/16/2024 21:22:48</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>03/16/2024 21:22:48</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js.map">
+      <publishTime>03/16/2024 21:22:48</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.4.1.js">
+      <publishTime>03/16/2024 21:22:50</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.4.1.min.js">
+      <publishTime>03/16/2024 21:22:50</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.4.1.min.map">
+      <publishTime>03/16/2024 21:22:50</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.4.1.slim.js">
+      <publishTime>03/16/2024 21:22:50</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.4.1.slim.min.js">
+      <publishTime>03/16/2024 21:22:50</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.4.1.slim.min.map">
+      <publishTime>03/16/2024 21:22:50</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.js">
+      <publishTime>03/16/2024 21:23:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.min.js">
+      <publishTime>03/16/2024 21:23:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.js">
+      <publishTime>03/16/2024 21:23:01</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.min.js">
+      <publishTime>03/16/2024 21:23:01</publishTime>
+    </File>
+    <File Include="Scripts/LayoutScript.js">
+      <publishTime>03/29/2024 17:55:24</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.8.3.js">
+      <publishTime>03/17/2024 11:49:24</publishTime>
+    </File>
+    <File Include="Views/Acc/Acc.cshtml">
+      <publishTime>04/17/2024 21:18:47</publishTime>
+    </File>
+    <File Include="Views/Acc/AccTFT.cshtml">
+      <publishTime>04/10/2024 20:02:04</publishTime>
+    </File>
+    <File Include="Views/Acc/AccTuong.cshtml">
+      <publishTime>03/27/2024 12:27:23</publishTime>
+    </File>
+    <File Include="Views/Acc/DetailsACC.cshtml">
+      <publishTime>04/18/2024 12:00:29</publishTime>
+    </File>
+    <File Include="Views/Admin/CreateList.cshtml">
+      <publishTime>04/13/2024 15:21:09</publishTime>
+    </File>
+    <File Include="Views/Admin/doanhthu.cshtml">
+      <publishTime>04/15/2024 11:05:00</publishTime>
+    </File>
+    <File Include="Views/Admin/EditList.cshtml">
+      <publishTime>04/17/2024 22:05:22</publishTime>
+    </File>
+    <File Include="Views/Admin/EditUser.cshtml">
+      <publishTime>04/10/2024 18:21:52</publishTime>
+    </File>
+    <File Include="Views/Admin/Index.cshtml">
+      <publishTime>04/15/2024 20:51:36</publishTime>
+    </File>
+    <File Include="Views/Admin/listacc.cshtml">
+      <publishTime>04/15/2024 21:41:14</publishTime>
+    </File>
+    <File Include="Views/Admin/ThongKe.cshtml">
+      <publishTime>04/15/2024 15:18:33</publishTime>
+    </File>
+    <File Include="Views/collaborators/CreateListCTV.cshtml">
+      <publishTime>04/05/2024 21:38:59</publishTime>
+    </File>
+    <File Include="Views/collaborators/EditListCTV.cshtml">
+      <publishTime>04/05/2024 21:38:31</publishTime>
+    </File>
+    <File Include="Views/collaborators/listaccCTV.cshtml">
+      <publishTime>04/15/2024 15:23:35</publishTime>
+    </File>
+    <File Include="Views/Employer/userNV.cshtml">
+      <publishTime>04/15/2024 15:18:33</publishTime>
+    </File>
+    <File Include="Views/Gmail/Send.cshtml">
+      <publishTime>04/15/2024 15:14:52</publishTime>
+    </File>
+    <File Include="Views/Home/baomat.cshtml">
+      <publishTime>04/17/2024 21:29:36</publishTime>
+    </File>
+    <File Include="Views/Home/Contact.cshtml">
+      <publishTime>04/17/2024 21:29:36</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>04/10/2024 20:30:22</publishTime>
+    </File>
+    <File Include="Views/Home/ttnaptien.cshtml">
+      <publishTime>04/17/2024 21:29:36</publishTime>
+    </File>
+    <File Include="Views/Shared/Error.cshtml">
+      <publishTime>03/16/2024 21:22:43</publishTime>
+    </File>
+    <File Include="Views/Shared/LayoutCTV.cshtml">
+      <publishTime>04/13/2024 21:44:07</publishTime>
+    </File>
+    <File Include="Views/Shared/LayoutNhanVien.cshtml">
+      <publishTime>04/14/2024 00:11:18</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>04/14/2024 10:46:28</publishTime>
+    </File>
+    <File Include="Views/Shared/_LayoutAdmin.cshtml">
+      <publishTime>04/14/2024 11:43:54</publishTime>
+    </File>
+    <File Include="Views/User/AccDaMua.cshtml">
+      <publishTime>04/17/2024 21:29:36</publishTime>
+    </File>
+    <File Include="Views/User/DetailsUser.cshtml">
+      <publishTime>04/17/2024 21:29:36</publishTime>
+    </File>
+    <File Include="Views/User/GioHang.cshtml">
+      <publishTime>04/18/2024 12:00:29</publishTime>
+    </File>
+    <File Include="Views/User/Login.cshtml">
+      <publishTime>04/15/2024 15:14:18</publishTime>
+    </File>
+    <File Include="Views/User/registern.cshtml">
+      <publishTime>03/31/2024 10:44:00</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>04/12/2024 01:41:43</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>03/16/2024 21:22:43</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>04/18/2024 22:06:22</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

@@ -25,6 +25,10 @@
     margin-right: auto; /* Canh logo sang trái */
 }
 
+.special-border {
+    border: 2px solid #ffc107; /* Màu vàng */
+    border-radius: 10px; /* Độ cong */
+}
 
 .navbar-nav {
     margin-left: auto;

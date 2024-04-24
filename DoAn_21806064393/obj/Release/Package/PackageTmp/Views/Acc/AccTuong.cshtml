@@ -1,0 +1,57 @@
+﻿@model IEnumerable<DoAn_21806064393.Models.Tuong>
+
+@{
+    ViewBag.Title = "AccTuong";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AccTuong</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<style>
+    .body{
+        color:white;
+    }
+</style>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ma_tuong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.imageURLtuong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.name_tuong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.id_acc)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ma_tuong)
+        </td>
+        <td>
+            <img src="~/Content/images_tuong/@item.imageURLtuong" alt="Thumbnail" width="100%">
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.name_tuong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_acc)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_tuong }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_tuong }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_tuong })
+        </td>
+    </tr>
+}
+
+</table>

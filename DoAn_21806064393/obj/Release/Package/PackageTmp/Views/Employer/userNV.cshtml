@@ -1,0 +1,193 @@
+﻿@model IEnumerable<DoAn_21806064393.Models.User>
+
+@{
+    ViewBag.Title = "userNV";
+    Layout = "~/Views/Shared/LayoutNhanVien.cshtml";
+}
+
+<h2>Danh Sách Khách Hàng</h2>
+<table class="table table-hover">
+    <thead>
+        <tr class=" bg-warning">
+            <th>Tên tài khoản</th>
+            <th>Mật Khẩu </th>
+            <th>Vai trò</th>
+            <th>Tiền</th>
+            <th>Email</th>
+            <th>Trạng Thái</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.username</td>
+                <td>@item.password</td>
+                <td>
+                    <select class="form-control role-dropdown" style="display:none;">
+                        <option value="0" @(item.roles == 0 ? "selected" : "")>Người Dùng</option>
+                        <option value="1" @(item.roles == 1 ? "selected" : "")>Quản Trị Viên</option>
+                        <option value="2" @(item.roles == 2 ? "selected" : "")>Cộng Tác Viên</option>
+                        <option value="3" @(item.roles == 3 ? "selected" : "")>Nhân Viên</option>
+                    </select>
+                    <span class="current-role">
+                        @(item.roles == 0 ? "Người dùng" :
+                              (item.roles == 1 ? "Quản trị viên" :
+                              (item.roles == 2 ? "Cộng tác viên" :
+                              (item.roles == 3 ? "Nhân viên" : "Không xác định"))))
+                    </span>
+                </td>
+                <td class="sotien">@String.Format("{0:N0}", item.price)</td>
+                <td>@item.gmail</td>
+                <td>@(item.status == 1 ? "Bị Khóa" : "Hoạt Động ")</td>
+                <td style="display:flex;">
+                    @if (item.status == 0)
+                    {
+                        <form id="lockForm_@item.id_user" action="@Url.Action("LockUser", "Employer", new { id = item.id_user })" method="post">
+                            @Html.AntiForgeryToken()
+                            <button type="button" class="btn btn-warning btn-sm lock-user-btn" data-user-id="@item.id_user">Khóa</button>
+                        </form>
+                    }
+                    else if (item.status == 1)
+                    {
+                        <form id="unlockForm_@item.id_user">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@item.id_user" />
+                            <button type="button" class="btn btn-success btn-sm unlock-user-btn" data-user-id="@item.id_user">Mở</button>
+                        </form>
+                    }
+
+                    <button type="button" class="btn btn-primary btn-sm change-password-btn" data-user-id="@item.id_user">Đổi mật khẩu</button>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+<div id="changePasswordDiv" class="modal fade" tabindex="-1" aria-labelledby="changePasswordDivLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="changePasswordDivLabel">Nhập Mật Khẩu Mới</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label for="newPassword" class="form-label">Mật Khẩu Mới:</label>
+                <div class="input-group">
+                    <input type="password" class="form-control" id="newPassword" placeholder="Nhập mật khẩu mới">
+                    <button class="btn btn-outline-secondary" type="button" id="togglePassword"><i class="fa-solid fa-eye"></i></button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" id="savePasswordBtn">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#togglePassword").click(function () {
+            var passwordField = $("#newPassword");
+            var fieldType = passwordField.attr("type");
+            if (fieldType === "password") {
+                passwordField.attr("type", "text");
+                $("#togglePassword i").removeClass("bi-eye").addClass("bi-eye-slash");
+            } else {
+                passwordField.attr("type", "password");
+                $("#togglePassword i").removeClass("bi-eye-slash").addClass("bi-eye");
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        $(".change-password-btn").click(function () {
+            // Lấy user ID từ thuộc tính data-user-id của nút
+            var userId = $(this).data("user-id");
+
+            // Hiển thị div changePasswordDiv khi nút được bấm
+            $("#changePasswordDiv").modal("show");
+
+            // Gán user ID vào thuộc tính data-user-id của nút "Lưu"
+            $("#savePasswordBtn").data("user-id", userId);
+        });
+
+        $("#savePasswordBtn").click(function () {
+            // Lấy user ID và mật khẩu mới từ thuộc tính data-user-id và giá trị của input
+            var userId = $(this).data("user-id");
+            var newPassword = $("#newPassword").val();
+
+            // Thực hiện AJAX request để gửi user ID và mật khẩu mới đến controller
+            $.ajax({
+                url: '/Employer/ChangePassword',
+                type: 'POST',
+                data: { id: userId, newPassword: newPassword },
+                success: function (response) {
+                    if (response.success) {
+                        alert("Đổi mật khẩu thành công!");
+                        $("#changePasswordDiv").modal("hide");
+                        location.reload();
+                    } else {
+                        alert("Đã xảy ra lỗi khi đổi mật khẩu.");
+                    }
+                },
+                error: function () {
+                    alert("Đã xảy ra lỗi khi gửi yêu cầu đến server.");
+                }
+            });
+        });
+    });
+    $(document).ready(function () {
+        $(".lock-user-btn").click(function () {
+            var userId = $(this).data("user-id");
+            if (confirm("Bạn có chắc chắn muốn khóa tài khoản này không?")) {
+                $.ajax({
+                    url: '/Employer/LockUser',
+                    type: 'POST',
+                    data: { id: userId },
+                    success: function (response) {
+                        if (response.success) {
+                            location.reload();
+                        } else {
+                            if (response.message) {
+                                alert(response.message);
+                            } else {
+                                alert("Đã xảy ra lỗi khi khóa tài khoản.");
+                            }
+                        }
+                    },
+                    error: function () {
+                        alert("Đã xảy ra lỗi khi gửi yêu cầu đến server.");
+                    }
+                });
+            }
+        });
+    });
+    $(document).ready(function () {
+        $(".unlock-user-btn").click(function () {
+            var userId = $(this).data("user-id");
+            if (confirm("Bạn có chắc chắn muốn mở tài khoản này không?")) {
+                $.ajax({
+                    url: '/Employer/UnlockUser',
+                    type: 'POST',
+                    data: { id: userId },
+                    success: function (response) {
+                        if (response.success) {
+                            alert("Mở khóa tài khoản thành công!");
+                            location.reload();
+                        } else {
+                            alert("Đã xảy ra lỗi khi mở khóa tài khoản.");
+                        }
+                    },
+                    error: function () {
+                        alert("Đã xảy ra lỗi khi gửi yêu cầu đến server.");
+                    }
+                });
+            }
+        });
+    });
+</script>

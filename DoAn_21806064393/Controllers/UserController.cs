@@ -19,7 +19,7 @@ namespace DoAn_21806064393.Controllers
         DataClasses1DataContext data = new DataClasses1DataContext();
         public static class AESEncryption
         {
-            private const string EncryptionKey = "yourEncryptionKey"; // Thay đổi key mã hóa của bạn ở đây
+            private const string EncryptionKey = "yourEncryptionKey";
 
             public static string Encrypt(string plainText)
             {
@@ -79,12 +79,27 @@ namespace DoAn_21806064393.Controllers
             }
             var user = data.Users.FirstOrDefault(a => a.id_user == id);
             string decryptedPassword = AESEncryption.Decrypt(user.password);
-
-            // Truyền mật khẩu đã giải mã vào ViewBag hoặc Model để sử dụng trong View
             ViewBag.DecryptedPassword = decryptedPassword;
 
             return View(user);
         }
+        public ActionResult AccDaMua(int id)
+        {
+            if (Session["LoggedInUser"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
+            var loggedInUser = Session["LoggedInUser"] as DoAn_21806064393.Models.User;
+            if (loggedInUser.id_user != id)
+            {
+                return HttpNotFound();
+            }
+            var purchasedAccounts = data.Carts.Where(c => c.userName == loggedInUser.username).ToList();
+
+            return View(purchasedAccounts);
+        }
+
         public ActionResult Login()
         {
             return View();
@@ -95,25 +110,38 @@ namespace DoAn_21806064393.Controllers
         {
             var user = data.Users.FirstOrDefault(u => u.username == obj.username);
 
-            // Tìm kiếm người dùng trong cơ sở dữ liệu với mật khẩu đã mã hóa
-           
-
             if (user != null && AESEncryption.Decrypt(user.password) == obj.password)
             {
-                Session["LoggedInUser"] = user;
-                Session["UserPrice"] = user.price;
-                Session["UserName"] = user.username;
-                if (user.roles == 0)
+                if (user.status == 1)
                 {
-                    Session["UserRole"] =0; // Người dùng thường
+                    Session.Clear();
+                    TempData["LoggedIn"] = false;
+                    ViewBag.Message = "Tài khoản của bạn đã bị khóa. Vui lòng liên hệ với admin để biết thêm chi tiết.";
+                    return View(); 
                 }
-                else if (user.roles == 1)
+                else
                 {
-                    Session["UserRole"] = 1; // Quản trị viên
+                    Session["LoggedInUser"] = user;
+                    Session["UserPrice"] = user.price;
+                    Session["UserName"] = user.username;
+                    if (user.roles == 0)
+                    {
+                        Session["UserRole"] = 0; 
+                    }
+                    else if (user.roles == 1)
+                    {
+                        Session["UserRole"] = 1;
+                    }
+                    else if (user.roles == 2)
+                    {
+                        Session["UserRole"] = 2;
+                    }
+                    else if (user.roles == 3)
+                    {
+                        Session["UserRole"] = 3;
+                    }
+                    return RedirectToAction("Index", "Home");
                 }
-                return RedirectToAction("Index", "Home");
-              
-
             }
             else
             {
@@ -121,10 +149,8 @@ namespace DoAn_21806064393.Controllers
                 ViewBag.Message = "Tên đăng nhập hoặc mật khẩu không đúng!";
                 return View(); // Trả về view Login để hiển thị thông báo lỗi
             }
-
-
-           
         }
+
         public ActionResult registern()
         {
             return View();
@@ -132,6 +158,7 @@ namespace DoAn_21806064393.Controllers
         [HttpPost]
         public ActionResult registern(FormCollection collection, User s)
         {
+
             var use = collection["username"];
             var pass= collection["password"];
             var mail = collection["gmail"];
@@ -194,28 +221,31 @@ namespace DoAn_21806064393.Controllers
             try
             {
                 var loggedInUser = Session["LoggedInUser"] as User;
-                var userToUpdate = data.Users.FirstOrDefault(u => u.id_user == loggedInUser.id_user);
                 if (loggedInUser == null)
                 {
                     return Json(new { success = false, error = "Bạn cần đăng nhập để thêm vào giỏ hàng." });
                 }
-                var account = data.accs.FirstOrDefault(a => a.id_acc == accountId);
 
+                var gioHangItem = data.GioHangs.FirstOrDefault(g => g.idnick == accountId && g.userN == loggedInUser.username);
+                if (gioHangItem != null)
+                {
+                    return Json(new { success = false, error = "Tài khoản đã có trong giỏ hàng, không thể thêm lần nữa." });
+                }
+                var account = data.accs.FirstOrDefault(a => a.id_acc == accountId);
                 if (account != null)
                 {
-                    GioHang gioHangItem = new GioHang
+                    GioHang gioHangItemNew = new GioHang
                     {
                         idnick = account.id_acc,
                         gianick = account.giasaukhuyenmai,
                         image = account.imageURL,
-                        userN=userToUpdate.username,
-                        acc_count=account.account,
-                        pass_word=account.password,
-
+                        userN = loggedInUser.username,
+                        acc_count = account.account,
+                        pass_word = account.password,
                     };
-                    data.GioHangs.InsertOnSubmit(gioHangItem);
+                    data.GioHangs.InsertOnSubmit(gioHangItemNew);
                     data.SubmitChanges();
-                    var gioHangItems = data.GioHangs.Where(g => g.userN == userToUpdate.username).ToList();
+                    var gioHangItems = data.GioHangs.Where(g => g.userN == loggedInUser.username).ToList();
                     decimal? total = gioHangItems.Sum(item => item.gianick ?? 0);
                     foreach (var item in gioHangItems)
                     {
@@ -234,12 +264,13 @@ namespace DoAn_21806064393.Controllers
                 return Json(new { success = false, error = ex.Message });
             }
         }
+
         public ActionResult GioHang()
         {
             var loggedInUser = Session["LoggedInUser"] as User;
             if (loggedInUser == null)
             {
-                return RedirectToAction("Login", "Account"); 
+                return RedirectToAction("Login", "User"); 
             }
             var giohang = data.GioHangs.Where(u => u.userN == loggedInUser.username).ToList();
 
@@ -276,7 +307,9 @@ namespace DoAn_21806064393.Controllers
                                 idacc = accToUpdate.id_acc,
                                 priceacc = accToUpdate.gia,
                                 sotien = loggedInUser.price - accToUpdate.gia,
-                                userName = loggedInUser.username
+                                userName = loggedInUser.username,
+                                taikhoan = accToUpdate.account,
+                                pass = accToUpdate.password,
                             };
 
                             data.Carts.InsertOnSubmit(updateCart);
@@ -317,6 +350,39 @@ namespace DoAn_21806064393.Controllers
                 return Json(new { success = false, error = ex.Message });
             }
         }
+        [HttpPost]
+        public ActionResult XoaGioHang(int id)
+        {
+            var loggedInUser = Session["LoggedInUser"] as User;
+
+            var gioHangItem = data.GioHangs.FirstOrDefault(g => g.idnick == id);
+            if (gioHangItem != null)
+            {
+                // Lưu giữ giá trị cũ của tổng số tiền của mục cần xóa
+                decimal? oldTotal = gioHangItem.gianick ?? 0;
+
+                data.GioHangs.DeleteOnSubmit(gioHangItem);
+                data.SubmitChanges();
+
+                // Tính toán lại tổng số tiền từ các mục còn lại trong giỏ hàng
+                var remainingGioHangItems = data.GioHangs.Where(g => g.userN == loggedInUser.username).ToList();
+                decimal? newTotal = remainingGioHangItems.Sum(item => item.gianick ?? 0);
+
+                // Cập nhật tổng số tiền mới cho các mục còn lại trong giỏ hàng
+                foreach (var item in remainingGioHangItems)
+                {
+                    item.Total = newTotal;
+                }
+                data.SubmitChanges();
+
+                return Json(new { success = true });
+            }
+            else
+            {
+                return Json(new { success = false, error = "Không tìm thấy mục trong giỏ hàng." });
+            }
+        }
+
 
         private bool IsValidEmail(string email)
         {

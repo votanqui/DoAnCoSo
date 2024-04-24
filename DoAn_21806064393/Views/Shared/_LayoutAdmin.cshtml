@@ -2,21 +2,24 @@
 @{
     Layout = null;
 }
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>_LayoutAdmin</title>
+    <title>Admin</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/1f9baf8be7.js" crossorigin="anonymous"></script>
     <style>
-
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+        }
 
         .admin-menu {
-            background-color: #333;
-            color: #fff;
-            height: 100vh;
-           
+            background-color: #343a40; /* Màu nền tối */
+            color: #fff; /* Màu chữ trắng */
+            min-height: 100vh;
+            overflow-y: auto;
         }
 
             .admin-menu a {
@@ -27,31 +30,73 @@
             }
 
                 .admin-menu a:hover {
-                    background-color: #555;
+                    background-color: #495057;
                 }
 
         .admin-content {
             padding: 20px;
+            background-color: #f8f9fa;
+            color: #212529;
         }
+
+        .admin-menu h4 {
+            font-size: 1.25rem;
+        }
+
+        .admin-menu a {
+            font-size: 1rem;
+        }
+        .nav-header {
+            margin-top: 20px;
+        }
+        .rounded {
+            border-radius: 10px;
+        }
+
     </style>
+    @RenderSection("myCustomScripts", required: false)
 </head>
 <body>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-2 admin-menu">
-                <h4>Admin Panel</h4>
+                <h4 class="text-center mt-3 mb-4">Admin Panel</h4>
                 <ul class="nav flex-column">
+                    <li class="nav-item has-treeview menu-open">
+                        <a href="@Url.Action("doanhthu", "Admin")" class="nav-link active d-flex align-items-center bg-primary rounded">
+                            <i class="nav-icon fas fa-tachometer-alt mr-2 text-white"></i>
+                            <p class="mb-0 text-white">
+                                Dashboard
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-header">THỐNG KÊ</li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Xin Chào @Session["UserName"]</a>
+                        <a class="nav-link" href="@Url.Action("ThongKe", "Admin")">
+                            <i class="fas fa-history"></i> Tài Khoản Đã Bán
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("ThongKe", "Admin")">Thông Kê Tổng</a>
+                        <a class="nav-link" href="@Url.Action("BalanceHistory", "Admin")">
+                            <i class="fas fa-money-bill-wave"></i> Biến Động Số Dư
+                        </a>
+                    </li>
+                    <li class="nav-header">QUẢN LÝ</li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "Admin")">
+                            <i class="fas fa-users"></i> Quản Lý Thành Viên
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Index", "Admin")">Quản lý thành viên</a>
+                        <a class="nav-link" href="@Url.Action("listacc", "Admin")">
+                            <i class="fas fa-gamepad"></i> Quản Lý Tài Khoản Game
+                        </a>
                     </li>
+                    <li class="nav-header">CÀI ĐẶT </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("listacc", "Admin")">Quản lý tài khoản game</a>
+                        <a class="nav-link" href="@Url.Action("Logout", "Admin")">
+                            <i class="fas fa-sign-out-alt"></i> Đăng Xuất
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -62,7 +107,6 @@
         </div>
     </div>
 </body>
-   
-
 </html>
+
 

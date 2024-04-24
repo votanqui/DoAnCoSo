@@ -1,0 +1,115 @@
+﻿.navbar-nav .nav-item.special-border {
+    border: 2px solid white; /* Thêm bo viền 5px */
+    margin-right: 10px; /* Giãn cách giữa các li là 10px */
+    border-radius: 5px; /* Đặt border màu vàng */
+}
+
+    .navbar-nav .nav-item.special-border .nav-link {
+        border-radius: 5px; /* Bo tròn góc */
+        padding: 8px 15px; /* Điều chỉnh khoảng cách */
+    }
+.navbar-nav .nav-link  {
+    color: yellow; /* Màu chữ màu vàng */
+    font-weight: bold;
+    margin-right: 10px;/* Chữ in đậm */
+}
+.navbar-nav .nav-item .nav-link:hover {
+    color: #34b7eb !important; /* Thay đổi màu khi di chuột */
+}
+
+/* Màu khi được click */
+.navbar-nav .nav-item .nav-link:focus, .navbar-nav .nav-item .nav-link.active {
+    color: white !important; /* Thay đổi màu khi được click hoặc active */
+}
+.navbar-brand {
+    margin-right: auto; /* Canh logo sang trái */
+}
+
+
+.navbar-nav {
+    margin-left: auto;
+}
+    .navbar-nav .nav-item:nth-child(4):hover .service-popup {
+        display: block;
+    }
+.service-popup ul {
+    list-style-type: none;
+}
+.service-popup li:hover {
+    background-color: yellow;
+    
+}
+.menu-item a {
+    text-decoration: none;
+    text-align: left;
+}
+.button-container {
+    display: flex;
+}
+.top-nap-the-container {
+    background-color: black; /* Màu nền đen */
+    color: white; /* Màu chữ trắng */
+    padding: 20px;
+}
+.col-sm-3 {
+    background-color: #343a40;
+}
+/* Ẩn bảng mặc định */
+.btn-nap-the {
+    background-color: yellow; /* Màu vàng */
+    width: 100%; /* Chiều rộng 100% */
+    margin-top: 10px;
+    font-weight: bold; /* Chữ đậm */
+    font-size: 20px ;
+    border-radius: 5px;/* Khoảng cách phía trên */
+}
+.button-container button {
+    background-color: #343a40;
+    color: #ffc107;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 5px;
+    flex-grow: 1;
+}
+
+
+    .btn.active {
+        background-color: #000; /* Màu đen khi nút được chọn */
+    }
+.modal-body form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .modal-body form .form-group {
+        width: 80%; /* Đảm bảo rộng hơn nút */
+        margin-bottom: 15px;
+    }
+
+    .modal-body form .btn-primary {
+        width: 50%; /* Đảm bảo rộng hơn nút */
+        margin: 0 auto; /* Căn giữa nút */
+    }
+.modal-header h4 {
+    text-align: center; /* Căn giữa nội dung của h4 */
+    color: #007bff; /* Màu chữ xanh dương */
+}
+.close {
+    border-radius: 5px;
+}
+body {
+    background-image: url('../images/bg_new.jpg');  
+    background-size: cover; /* Căn chỉnh kích thước hình ảnh để phủ hết khu vực */
+    background-position: center; /* Căn chỉnh vị trí của hình ảnh */
+    position: relative; /* Đặt vị trí tương đối để các phần tử con có thể định vị tuyệt đối */
+}
+
+.service-popup {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    z-index: 1000;
+    padding: 15px;
+}

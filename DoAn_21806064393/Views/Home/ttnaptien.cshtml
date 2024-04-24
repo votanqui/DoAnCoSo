@@ -1,0 +1,165 @@
+﻿@model DoAn_21806064393.ViewModels.LichSuViewModels
+
+@{
+    ViewBag.Title = "ttnaptien";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container custom-container">
+    <div class="row">
+        <div class="col-md-7">
+            <h2>Thông tin chuyển khoản</h2>
+            <ul class="list-group">
+                <li><strong>Số tài khoản:</strong> 0919332046</li>
+                <li><strong>Chủ tài khoản:</strong> Võ Tấn Qui</li>
+                <li><strong>Nội dung chuyển khoản: </strong> naptien  @Session["UserName"] </li>
+                <li>Lưu ý saiu khi chuyển khoản Đợi Khoảng 30s sau đó  bấm vào nút Xác Nhận Đã Chuyển Khoản để hoàn thành giao dịch nhé ! </li>
+            </ul>
+        </div>
+        <div class="col-md-3">
+            <img src="~/Content/images/qr-mbbank.jpg" class="img-fluid" alt="Ảnh ngân hàng">
+        </div>
+    </div>
+    @if (TempData["TransactionMessage"] != null)
+    {
+        <div class="alert alert-warning" role="alert">
+            @TempData["TransactionMessage"]
+        </div>
+    }
+    <button id="btnThanhToan">Xác Nhận Đã Chuyển Khoản</button>
+    <h2>Lịch Sử Chuyển Khoản</h2>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Mã Giao Dịch </th>
+                    <th>Số Tiền</th>
+                    <th>Nội Dung</th>
+                    <th>Ngày </th>
+                    <th>Trạng Thái</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.mbbanks)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.magd)</td>
+                        <td>@String.Format("{0:N0}", item.sodu)</td>
+
+                        <td>@Html.DisplayFor(modelItem => item.noidung)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ngaytao)</td>
+                        <td>@Html.DisplayFor(modelItem => item.trangthai)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <h2>Lịch Sử Nạp Thẻ</h2>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nhà Mạng </th>
+                    <th>Mệnh Giá</th>
+                    <th>Số Seri</th>
+                    <th>Mã thẻ </th>
+                    <th>Ngày </th>
+                    <th>Trạng Thái</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.theocaos)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.type)</td>
+                        <td>@Html.DisplayFor(modelItem => item.menhgia)</td>
+                        <td>@Html.DisplayFor(modelItem => item.seri)</td>
+                        <td>@Html.DisplayFor(modelItem => item.pin)</td>
+                        <td>@Html.DisplayFor(modelItem => item.NgayTao)</td>
+                        <td>@Html.DisplayFor(modelItem => item.status)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <button id="sendButton">Send API Request</button>
+     <div id="imageContainer"></div>
+</div>
+<style>
+    .custom-container {
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 30px;
+        margin-top: 15px;
+    }
+
+    .table th,
+    .table td, h2 {
+        color: #fff;
+    }
+
+    .list-group li {
+        color: yellow;
+        list-style: none;
+        text-decoration: none;
+    }
+
+        .list-group li:last-child {
+            color: red;
+        }
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Sử dụng jQuery để gọi action mbbank khi nút được nhấn
+        $("#btnThanhToan").click(function () {
+            $.ajax({
+                url: '@Url.Action("mbbank", "Home")',
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                    console.log("Dữ liệu từ hành động mbbank:", data);
+                    location.reload();
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log("Lỗi khi gọi hành động mbbank:", errorThrown);
+                }
+            });
+        });
+    });
+  $(document).ready(function () {
+    $("#sendButton").click(function () {
+        // Chuỗi chứa các giá trị được ngăn cách bằng dấu |
+        var valuesString = "MissFortuneLoadscreen_20_LE|WarwickLoadscreen_46_LE|LuxLoadscreen_16"; // Thay đổi chuỗi giá trị ở đây theo nhu cầu của bạn
+
+        $.ajax({
+            url: "@Url.Action("SendApiRequest", "Home")",
+            type: "POST",
+            data: { valuesString: valuesString }, // Gửi chuỗi giá trị
+            success: function (data) {
+                if (data.success) {
+                    $("#imageContainer").empty();
+
+                    // Duyệt qua danh sách imageDataList và thêm các hình ảnh vào #imageContainer
+                    data.imageDataList.forEach(function (imageData) {
+                        $("#imageContainer").append('<img src="data:image/png;base64,' + imageData + '" />');
+                    });
+                    console.log("API request successful");
+                } else {
+                    // Hiển thị thông báo lỗi nếu có lỗi
+                    $("#errorMessage").text(data.errorMessage);
+                    // Thông báo lỗi ra console
+                    console.log("Error:", data.errorMessage);
+                }
+            },
+            error: function () {
+                // Xử lý lỗi nếu không thể gửi yêu cầu đến server
+                $("#errorMessage").text("An error occurred while sending the API request. Please try again later.");
+                // Thông báo lỗi ra console
+                console.log("An error occurred while sending the API request.");
+            }
+        });
+    });
+});
+
+</script>

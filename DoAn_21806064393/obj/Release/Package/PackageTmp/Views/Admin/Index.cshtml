@@ -1,0 +1,238 @@
+﻿@model  PagedList.IPagedList<DoAn_21806064393.Models.User>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Danh sách người dùng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 style="color: black; font-weight: bold;">Danh sách người dùng</h2>
+<div class="table-responsive">
+    <form method="post" style="display:flex;" action="@Url.Action("SearchUser", "Admin")">
+        <input class="form-control mr-sm-2" style="width:auto;" type="search" name="searchKeyword" placeholder="Nhập từ khóa tìm kiếm" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm username</button>
+    </form>
+    @if (TempData["SuccessThemUser"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessThemUser"]
+        </div>
+    }
+    @if (!string.IsNullOrEmpty(ViewBag.Message))
+    {
+        <div class="alert alert-info">
+            @ViewBag.Message
+        </div>
+    }
+
+    <table class="table table-hover">
+        <thead>
+            <tr class="bg-warning chutren">
+                <th>Tên tài khoản</th>
+                <th>Vai trò</th>
+                <th>Tiền</th>
+                <th>Email</th>
+                <th>Trạng Thái</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>@item.username</td>
+                    <td>
+                        <select class="form-control role-dropdown" style="display:none;">
+                            <option value="0" @(item.roles == 0 ? "selected" : "")>Người Dùng</option>
+                            <option value="1" @(item.roles == 1 ? "selected" : "")>Quản Trị Viên</option>
+                            <option value="2" @(item.roles == 1 ? "selected" : "")>Cộng Tác Viên</option>
+                            <option value="3" @(item.roles == 1 ? "selected" : "")>Nhân Viên</option>
+                        </select>
+                        <span class="current-role">
+                            @(item.roles == 0 ? "Người dùng" :
+                              (item.roles == 1 ? "Quản trị viên" :
+                              (item.roles == 2 ? "Cộng tác viên" :
+                              (item.roles == 3 ? "Nhân viên" : "Không xác định"))))
+                        </span>
+
+                    </td>
+
+                    <td class="sotien">@String.Format("{0:N0}", item.price)</td>
+                    <td>@item.gmail</td>
+                    <td>@(item.status == 1 ? "Bị Khóa" : "Hoạt Động ")</td>
+                    <td style="display:flex;">
+                        @if (item.status == 0)
+                        {
+                            <form id="lockForm_@item.id_user" action="@Url.Action("LockUser", "Admin", new { id = item.id_user })" method="post">
+                                @Html.AntiForgeryToken()
+                                <button type="button" class="btn btn-warning btn-sm lock-user-btn" data-user-id="@item.id_user">Khóa</button>
+                            </form>
+                        }
+                        else if (item.status == 1)
+                        {
+                            <form id="unlockForm_@item.id_user">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="id" value="@item.id_user" />
+                                <button type="button" class="btn btn-success btn-sm unlock-user-btn" data-user-id="@item.id_user">Mở</button>
+                            </form>
+                        }
+                        <form id="lockForm_@item.id_user" action="@Url.Action("LockUser", "Admin", new { id = item.id_user })" method="post">
+                            @Html.AntiForgeryToken()
+                            <button type="button" class="btn btn-success btn-sm save-role-btn" style="display:none;">Lưu</button>
+                            <button type="button" class="btn btn-info btn-sm grant-permission-btn" data-user-id="@item.id_user">Phân quyền</button>
+                        </form>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new
+        {
+            page = page
+        }))
+    </div>
+</div>
+<style>
+    .header {
+        color: #f7df1e; /* Màu chữ đen */
+        text-align: center;
+        padding: 0;
+        margin-top: 30px;
+    }
+
+    .chutren {
+        color: #FF6633;
+    }
+    .MenuTrang {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+        .MenuTrang ul.pagination {
+            display: inline-block;
+            padding-left: 0;
+            margin: 0;
+            border-radius: 4px;
+        }
+
+            .MenuTrang ul.pagination li {
+                display: inline;
+            }
+
+                .MenuTrang ul.pagination li a,
+                .MenuTrang ul.pagination li span {
+                    padding: 6px 12px;
+                    text-decoration: none;
+                    border: 1px solid #ddd;
+                    margin: 2px;
+                    border-radius: 4px;
+                }
+
+                .MenuTrang ul.pagination li.active span {
+                    background-color: #007bff;
+                    color: #fff;
+                    border-color: #007bff;
+                }
+
+                .MenuTrang ul.pagination li a:hover:not(.active) {
+                    background-color: #FFFF33;
+                    color: black;
+                }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    function confirmDelete(id) {
+        if (confirm("Bạn Có Thật Sự Muốn Xóa Không?")) {
+            document.getElementById("deleteForm_" + id).submit();
+        }
+    }
+    $(document).ready(function () {
+        $(".lock-user-btn").click(function () {
+            var userId = $(this).data("user-id");
+            if (confirm("Bạn có chắc chắn muốn khóa tài khoản này không?")) {
+                $.ajax({
+                    url: '/Admin/LockUser',
+                    type: 'POST',
+                    data: { id: userId },
+                    success: function (response) {
+                        if (response.success) {
+                            location.reload();
+                        } else {
+                            if (response.message) {
+                                alert(response.message);
+                            } else {
+                                alert("Đã xảy ra lỗi khi khóa tài khoản.");
+                            }
+                        }
+                    },
+                    error: function () {
+                        alert("Đã xảy ra lỗi khi gửi yêu cầu đến server.");
+                    }
+                });
+            }
+        });
+    });
+    $(document).ready(function () {
+        $(".unlock-user-btn").click(function () {
+            var userId = $(this).data("user-id");
+            if (confirm("Bạn có chắc chắn muốn mở tài khoản này không?")) {
+                $.ajax({
+                    url: '/Admin/UnlockUser',
+                    type: 'POST',
+                    data: { id: userId },
+                    success: function (response) {
+                        if (response.success) {
+                            alert("Mở khóa tài khoản thành công!");
+                            location.reload();
+                        } else {
+                            alert("Đã xảy ra lỗi khi mở khóa tài khoản.");
+                        }
+                    },
+                    error: function () {
+                        alert("Đã xảy ra lỗi khi gửi yêu cầu đến server.");
+                    }
+                });
+            }
+        });
+    });
+    $(".grant-permission-btn").click(function () {
+        var $row = $(this).closest('tr');
+        var $roleCell = $row.find('.role-dropdown').parent();
+        $roleCell.find('.current-role').hide();
+        $roleCell.find('.role-dropdown').show();
+        $row.find('.grant-permission-btn').hide();
+        $row.find('.save-role-btn').show();
+    });
+
+    $(".save-role-btn").click(function () {
+        var $row = $(this).closest('tr');
+        var userId = $row.find('.grant-permission-btn').data("user-id");
+        var newRole = $row.find('.role-dropdown').val();
+        $.ajax({
+            url: '/Admin/GrantPermission',
+            type: 'POST',
+            data: { userId: userId, newRole: newRole },
+            success: function (response) {
+                if (response.success) {
+                    var $roleCell = $row.find('.role-dropdown').parent();
+                    $roleCell.find('.current-role').text(newRole == 0 ? "Người dùng" : "Quản trị viên").show();
+                    $roleCell.find('.role-dropdown').hide();
+                    $row.find('.grant-permission-btn').show();
+                    $row.find('.save-role-btn').hide();
+
+                    location.reload(); 
+                } else {
+                    alert("Có lỗi xảy ra khi cập nhật vai trò.");
+                }
+            },
+            error: function () {
+                alert("Đã xảy ra lỗi khi gửi yêu cầu đến server.");
+            }
+        });
+    });
+</script>

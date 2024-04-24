@@ -1,0 +1,48 @@
+﻿@model IEnumerable<DoAn_21806064393.Models.Cart>
+
+@{
+    ViewBag.Title = "AccDaMua";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container custom-container">
+    <h2 class="text-white">Acc Đã Mua</h2>
+    <table class="table  text-white">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Ngày Mua</th>
+                <th scope="col">Mã Tài Khoản</th>
+                <th scope="col">Tài Khoản</th>
+                <th scope="col">Mật Khẩu</th>
+                <th scope="col">Giá Tài Khoản</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.date)</td>
+                    <td>@Html.DisplayFor(modelItem => item.idacc)</td>
+                    <td>@Html.DisplayFor(modelItem => item.taikhoan)</td>
+                    <td>@Html.DisplayFor(modelItem => item.pass)</td>
+                    <td>@Html.DisplayFor(modelItem => item.priceacc)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<style>
+    body {
+        color: #fff; 
+    }
+
+    .custom-container {
+        background-color: rgba(0, 0, 0, 0.5); 
+        padding: 30px;
+        margin-top: 15px; 
+    }
+</style>
+
+

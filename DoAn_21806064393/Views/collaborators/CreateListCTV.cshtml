@@ -1,0 +1,132 @@
+﻿@model DoAn_21806064393.Models.acc
+
+@{
+    ViewBag.Title = "CreateListCTV";
+    Layout = "~/Views/Shared/LayoutCTV.cshtml";
+}
+
+<h2>CreateList</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Thông tin cơ bản</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.account, "Tài khoản", htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.account, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.account, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.password, "Mật khẩu", htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.gia, "Giá", htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.gia, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.gia, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Create" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Thông tin chi tiết</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.so_mau_mat, "Số mẫu mắt", htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.so_mau_mat, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.so_mau_mat, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.so_tuong, "Số tướng", htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.so_tuong, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.so_tuong, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.so_skin, "Số trang phục", htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.so_skin, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.so_skin, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.theloai, "Danh Mục", htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownListFor(model => model.theloai, new SelectList(new[]
+                            {
+                                new SelectListItem { Text = "lol", Value = "lol" },
+                                new SelectListItem { Text = "tft", Value = "tft" }
+                            }, "Value", "Text"), "-- Chọn danh mục --", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.theloai, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.imageURL, "Ảnh", htmlAttributes: new { @class = "control-label" })
+                            <input type="file" name="fileUpload" id="fileUpload" accept="image/*" style="display:none;" />
+                            <input type="button" id="btnUpload" value="Chọn ảnh" class="btn btn-success" />
+                            <br />
+                            <div id="imageContainer">
+                                <img src="#" id="pictureUpload" style="max-width:200px; max-height:200px;" />
+                            </div>
+                            @Html.HiddenFor(model => model.imageURL, new { htmlAttributes = new { @class = "form-control", @id = "imageURL" } })
+                            @Html.ValidationMessageFor(model => model.imageURL, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+
+@section upload
+{
+    <script>
+        $('#btnUpload').click(function () {
+            $('#fileUpload').click();
+        });
+        $('#fileUpload').change(function () {
+            if (window.FormData !== undefined) {
+                var fileUpload = $('#fileUpload').get(0);
+                var files = fileUpload.files;
+                var formData = new FormData();
+                formData.append('file', files[0]);
+
+                $.ajax(
+                    {
+                        type: 'POST',
+                        url: '/Admin/ProcessUpload',
+                        contentType: false,
+                        processData: false,
+                        data: formData,
+                        success: function (urlImage) {
+                            $('#pictureUpload').attr('src', urlImage);
+                            $('#imageURL').val(urlImage);
+                        },
+                        error: function (err) {
+                            alert('Error ', err.statusText);
+                        }
+                    });
+            }
+        });
+
+    </script>
+}

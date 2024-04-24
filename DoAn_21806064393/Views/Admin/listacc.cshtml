@@ -5,19 +5,28 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2 style="color: black; font-weight: bold;">Danh sách tài khoản</h2>
+<div class="row">
+    <div class="col text-center">
+        <h2 class="my-4">Danh Sách Tài Khoản LOL</h2>
+    </div>
+</div>
 
 <p>
     @Html.ActionLink("Thêm mới", "CreateList", null, new { @class = "btn btn-primary" })
 </p>
-
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <div class="alert alert-info">
+        @ViewBag.Message
+    </div>
+}
 <div class="table-responsive">
     <form method="post" style="display:flex;" action="@Url.Action("SearchAcc", "Admin")">
         <input class="form-control mr-sm-2" style="width:auto;" type="search" name="searchKeyword" placeholder="Nhập từ khóa tìm kiếm" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm Account</button>
     </form>
-    <table class="table table-striped table-bordered">
-        <thead class="thead-dark">
+    <table class="table table-hover">
+        <thead class="bg-warning chutren">
             <tr>
                 <th>Tài khoản</th>
                 <th>Mật khẩu</th>
@@ -40,7 +49,7 @@
             }
             @foreach (var item in Model)
             {
-                <tr>
+                <tr class="@((item.status == "da ban") ? "status-da-ban" : "")">
                     <td>@item.account</td>
                     <td>@item.password</td>
                     <td>@item.so_mau_mat</td>
@@ -56,6 +65,7 @@
                             @Html.AntiForgeryToken()
                             <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete('@item.id_acc')">Xóa</button>
                         </form>
+
                     </td>
                 </tr>
             }
@@ -78,6 +88,13 @@
         margin-top: 30px;
     }
 
+    .chutren {
+        color: #FF6633;
+    }
+
+    .status-da-ban {
+        background-color: #ccebff; /* Màu nền xanh */
+    }
 
     .MenuTrang {
         margin-top: 10px;
@@ -116,39 +133,37 @@
                 }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 <script>
     function confirmDelete(id) {
         if (confirm("Bạn Có Thật Sự Muốn Xóa Không?")) {
             document.getElementById("deleteForm_" + id).submit();
         }
     }
-  
-        $(document).ready(function () {
-            $(".editable-khuyen-mai").keypress(function (event) {
-                if (event.which === 13) { 
-                    event.preventDefault();
-                    var id = $(this).data("id");
-                    var currentValue = $(this).data("value");
-                    var newValue = $(this).text().replace('%', '');
-                    $.ajax({
-                        url: '/Admin/UpdateKhuyenMai',
-                        type: 'POST',
-                        data: { id: id, khuyenMaiPercent: newValue },
-                        success: function (response) {
-                            if (response.success) {
-                                $(".editable-khuyen-mai[data-id='" + id + "']").text(newValue + "%");
-                                $(".editable-khuyen-mai[data-id='" + id + "']").data("value", newValue);
-                            } else {
-                                alert("Có lỗi xảy ra khi cập nhật giá trị khuyến mãi.");
-                            }
-                        },
-                        error: function () {
-                            alert("Đã xảy ra lỗi khi gửi yêu cầu đến server.");
+    $(document).ready(function () {
+        $(".editable-khuyen-mai").keypress(function (event) {
+            if (event.which === 13) {
+                event.preventDefault();
+                var id = $(this).data("id");
+                var currentValue = $(this).data("value");
+                var newValue = $(this).text().replace('%', '');
+                $.ajax({
+                    url: '/Admin/UpdateKhuyenMai',
+                    type: 'POST',
+                    data: { id: id, khuyenMaiPercent: newValue },
+                    success: function (response) {
+                        if (response.success) {
+                            $(".editable-khuyen-mai[data-id='" + id + "']").text(newValue + "%");
+                            $(".editable-khuyen-mai[data-id='" + id + "']").data("value", newValue);
+                        } else {
+                            alert("Có lỗi xảy ra khi cập nhật giá trị khuyến mãi.");
                         }
-                    });
-                }
-            });
+                    },
+                    error: function () {
+                        alert("Đã xảy ra lỗi khi gửi yêu cầu đến server.");
+                    }
+                });
+            }
+        });
     });
 
 

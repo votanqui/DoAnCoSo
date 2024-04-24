@@ -1,0 +1,145 @@
+﻿@model DoAn_21806064393.Models.acc
+
+@{
+    ViewBag.Title = "EditListCTV";
+    Layout = "~/Views/Shared/LayoutCTV.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>@Html.LabelFor(model => model.account)</td>
+                    <td>
+                        @Html.EditorFor(model => model.account, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.account, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.password)</td>
+                    <td>
+                        @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.so_mau_mat)</td>
+                    <td>
+                        @Html.EditorFor(model => model.so_mau_mat, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.so_mau_mat, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.so_tuong)</td>
+                    <td>
+                        @Html.EditorFor(model => model.so_tuong, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.so_tuong, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.so_skin)</td>
+                    <td>
+                        @Html.EditorFor(model => model.so_skin, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.so_skin, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.status)</td>
+                    <td>
+                        @Html.EditorFor(model => model.status, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.gia)</td>
+                    <td>
+                        @Html.EditorFor(model => model.gia, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.gia, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.imageURL)</td>
+                    <td>
+                        @Html.EditorFor(model => model.imageURL, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.imageURL, "", new { @class = "text-danger" })
+                        <input type="file" name="fileUpload" id="fileUpload" accept="image/*"
+                               style="display:none;" />
+                        <input type="button" id="btnUpload" value="Chọn" class="btn btn-success" />
+                        <div id="imageContainer">
+                            <img src="~/Content/images/@Model.imageURL" id="pictureUpload" />
+                        </div>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </div>
+    <style>
+        #imageContainer {
+            width: 200px; /* Độ rộng mong muốn */
+            height: 140px; /* Chiều cao mong muốn */
+            border: 1px solid #ccc; /* Đường viền */
+            overflow: hidden; /* Tránh tràn ra ngoài */
+        }
+
+        #pictureUpload {
+            width: 100%; /* Hình ảnh chiếm toàn bộ chiều rộng của phần tử cha */
+            height: 100%; /* Chiều cao tự động tính theo tỉ lệ */
+        }
+    </style>
+
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+@section upload
+{
+    <script>
+        $(function () {
+            $('#btnUpload').click(function () {
+                $('#fileUpload').trigger('click');
+            });
+
+            $('#fileUpload').change(function () {
+                if (window.FormData !== undefined) {
+                    var fileUpload = $('#fileUpload').get(0);
+                    var files = fileUpload.files;
+                    var formData = new FormData();
+                    formData.append('file', files[0]);
+
+                    $.ajax(
+                        {
+                            type: 'POST',
+                            url: '/Admin/ProcessUpload',
+                            contentType: false,
+                            processData: false,
+                            data: formData,
+                            success: function (urlImage) {
+                                $('#pictureUpload').attr('src', urlImage);
+                                $('#imageURL').val(urlImage);
+                            },
+                            error: function (err) {
+                                alert('Error ', err.statusText);
+                            }
+                        });
+                }
+            });
+        });
+    </script>
+}

@@ -14,7 +14,11 @@
     }
 </style>
 <div class="container custom-container">
-    <h2 class="text-white">GioHang</h2>
+    <div class="row">
+        <div class="col text-center text-white">
+            <h2 class="my-4">GIỎ HÀNG</h2>
+        </div>
+    </div>
     <table class="table">
         <tr>
             <th class="text-white">Mã Nick</th>
@@ -32,15 +36,22 @@
                     @Html.DisplayFor(modelItem => item.idnick)
                 </td>
                 <td class="text-white">@Html.DisplayFor(modelItem => item.gianick)</td>
-                <td class="text-white">@Html.DisplayFor(modelItem => item.image)</td>
+                <td class="text-white"><img class="img-custom" src="@item.image" alt="Ảnh"></td>
+
                 <td class="text-white">@Html.DisplayFor(modelItem => item.Total)</td>
+                <td class="text-white">
+                    <form id="deleteForm_@item.idnick" action="@Url.Action("XoaGioHang", "Admin", new { id = item.idnick })" method="post">
+                        @Html.AntiForgeryToken()
+                        <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete('@item.idnick')">Xóa</button>
+                    </form>
+                </td>
+
             </tr>
+
         }
 
     </table>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paymentModal">
-        Thanh toán
-    </button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paymentModal">Thanh toán</button>
     <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -94,10 +105,38 @@
         </div>
     </div>
 </div>
+<style>
+    .img-custom {
+        width: 300px; 
+        height: 200px;
+    }
+
+</style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-
+    // xóa giỏ hàngg-----------------------------------------------
+    function confirmDelete(id) {
+        if (confirm("Bạn có chắc chắn muốn xóa không?")) {
+            $.ajax({
+                url: '/User/XoaGioHang',
+                type: 'POST',
+                data: { id: id },
+                success: function (response) {
+                    if (response.success) {
+                       
+                        location.reload();
+                    } else {
+                        alert(response.error); 
+                    }
+                },
+                error: function () {
+                    alert("Đã xảy ra lỗi khi gửi yêu cầu đến server.");
+                }
+            });
+        }
+    }
+    //---------------THANH TOÁN NÈ---------------------------------------
     $(document).ready(function(){
 
         $("#showPaymentDiv").click(function(){
@@ -119,6 +158,10 @@
             $(".idnick-checkbox:checked").each(function () {
                 selectedIdnicks.push($(this).val());
             });
+            if (selectedIdnicks.length === 0) {
+                alert("Vui lòng chọn ít nhất một nick để thanh toán.");
+                return; 
+            }
            if (userPrice >= accountPrice) {
                var newPrice = userPrice - accountPrice;
                 $.ajax({
@@ -137,7 +180,6 @@
                                  setTimeout(function () {
                                 $("#paymentModal").modal("hide");
                                  }, 2000);
-
                              } else {
                                  alert(response.error);
                              }

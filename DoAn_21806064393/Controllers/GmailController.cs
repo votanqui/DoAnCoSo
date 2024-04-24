@@ -1,7 +1,10 @@
 ﻿using DoAn_21806064393.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -12,11 +15,54 @@ namespace DoAn_21806064393.Controllers
     {
         // GET: Gmail
         DataClasses1DataContext data = new DataClasses1DataContext();
-        public ActionResult Send()
+        public static class AESEncryption
         {
-            return View();
-        }
+            private const string EncryptionKey = "yourEncryptionKey"; // Thay đổi key mã hóa của bạn ở đây
 
+            public static string Encrypt(string plainText)
+            {
+                byte[] clearBytes = Encoding.Unicode.GetBytes(plainText);
+                using (Aes encryptor = Aes.Create())
+                {
+                    Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6E, 0x20, 0x4D, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                    encryptor.Key = pdb.GetBytes(32);
+                    encryptor.IV = pdb.GetBytes(16);
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
+                        {
+                            cs.Write(clearBytes, 0, clearBytes.Length);
+                            cs.Close();
+                        }
+                        plainText = Convert.ToBase64String(ms.ToArray());
+                    }
+                }
+                return plainText;
+            }
+
+            public static string Decrypt(string cipherText)
+            {
+                cipherText = cipherText.Replace(" ", "+");
+                byte[] cipherBytes = Convert.FromBase64String(cipherText);
+                using (Aes encryptor = Aes.Create())
+                {
+                    Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6E, 0x20, 0x4D, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                    encryptor.Key = pdb.GetBytes(32);
+                    encryptor.IV = pdb.GetBytes(16);
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write))
+                        {
+                            cs.Write(cipherBytes, 0, cipherBytes.Length);
+                            cs.Close();
+                        }
+                        cipherText = Encoding.Unicode.GetString(ms.ToArray());
+                    }
+                }
+                return cipherText;
+            }
+        }
+        public ActionResult Send() { return View(); }
         [HttpPost]
         public ActionResult Send(Gmail gmail)
         {
@@ -31,10 +77,11 @@ namespace DoAn_21806064393.Controllers
             bool sendSuccess = false;
             // Kiểm tra xem địa chỉ email đã gửi có tồn tại trong cơ sở dữ liệu hay không
             var user = data.Users.FirstOrDefault(u => u.gmail == gmail.To);
+
             if (user != null)
             {
                 // Cập nhật mật khẩu mới vào cơ sở dữ liệu cho người dùng tương ứng
-                user.password = newPassword;
+                user.password = AESEncryption.Encrypt(newPassword);
                 data.SubmitChanges();
 
                 // Gửi email chứa mật khẩu mới cho người dùng

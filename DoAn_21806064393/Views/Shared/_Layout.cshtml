@@ -20,8 +20,7 @@
             <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">
-                        <img src="~/images/logo_doan.png" alt="Logo" height="30" />
-
+                        <img src="~/Content/images/logoshop.jpg" alt="Logo" height="30" />
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -44,14 +43,12 @@
                             @if (!isLoggedIn)
                             {
 
-                                <li class="nav-item special-border">
-                                    <a class="nav-link" href="@Url.Action("Login", "User")" id="openLoginModal"><i class="fa-solid fa-user"></i>Đăng nhập</a>
+                                <li class="nav-item special-border border border-warning">
+                                    <a class="nav-link" href="@Url.Action("Login", "User")" id="openLoginModal"><i class="fa-solid fa-user"></i> Đăng nhập</a>
                                 </li>
-                                <li class="nav-item special-border">
-                                    <a class="nav-link" href="@Url.Action("registern", "User")" id="openSignupModal"><i class="fa-solid fa-user-plus"></i>Đăng ký</a>
+                                <li class="nav-item special-border border border-warning">
+                                    <a class="nav-link" href="@Url.Action("registern", "User")" id="openSignupModal"><i class="fa-solid fa-user-plus"></i> Đăng ký</a>
                                 </li>
-
-
 
                             }
                             else
@@ -60,44 +57,74 @@
                                 var userRole = (int)Session["UserRole"];
                                 if (userRole == 0) // Nếu là user
                                 {
-                                    <li class="nav-item ">
+                                    <li class="nav-item rounded-pill border border-warning">
                                         <a class="nav-link" href="#" id="userInfoDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fa-solid fa-user"></i>
+                                            <i class="fa-solid fa-user mr-2"></i>
                                             @{
                                                 // Lấy giá trị từ Session và chuyển đổi thành số nguyên (nếu cần)
                                                 var sessionPrice = Convert.ToInt32(Session["UserPrice"]);
                                             }
-
-                                            <td class="sotien">@String.Format("{0:#,##0}", sessionPrice)VND </td>
-
+                                            <td class="sotien">-@String.Format("{0:#,##0}", sessionPrice)VND</td>
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="userInfoDropdown">
                                             @{
                                                 var loggedInUser = Session["LoggedInUser"] as DoAn_21806064393.Models.User;
                                             }
-
-                                            <a class="dropdown-item" href="@Url.Action("DetailsUser", "User", new { id = loggedInUser != null ? loggedInUser.id_user : 0 })">Thông tin người dùng</a>
-
-
-                                            <a class="dropdown-item" href="#">Nạp tiền</a>
+                                            <a class="dropdown-item" href="@Url.Action("DetailsUser", "User", new { id = loggedInUser != null ? loggedInUser.id_user : 0 })">Thông tin</a>
+                                            <a class="dropdown-item" href="@Url.Action("AccDaMua", "User", new { id = loggedInUser != null ? loggedInUser.id_user : 0 })">Acc Mua</a>
+                                            <a class="dropdown-item" href="@Url.Action("ttnaptien", "Home", new { id = loggedInUser != null ? loggedInUser.id_user : 0 })">Nạp tiền</a>
                                             <a class="dropdown-item" href="@Url.Action("Logout", "User")">Đăng xuất</a>
                                         </div>
                                     </li>
+
                                 }
                                 else if (userRole == 1) // Nếu là admin
                                 {
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#" id="userInfoDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fa-solid fa-user-tie"></i>
-                                            <span class="user-role">QTV</span>
-                                            <span class="user-price">Có: @Session["UserPrice"]VND</span>
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="userInfoDropdown">
-                                            <a class="dropdown-item logout-link" href="@Url.Action("Index", "Admin")">Quản Lý</a>
-                                            <a class="dropdown-item logout-link" href="@Url.Action("Logout", "User")">Đăng xuất</a>
+                                        <div class="rounded-pill border border-warning">
+                                            <a class="nav-link d-flex align-items-center" href="#" id="userInfoDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa-solid fa-user-tie mr-2"></i>
+                                                <div>
+                                                    <span class="user-role">QTV</span>
+                                                    @{
+                                                        var userPrice = Convert.ToDecimal(Session["UserPrice"]);
+                                                    }
+                                                    <span class="user-price">- @userPrice.ToString("N0") VND</span>
+                                                </div>
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="userInfoDropdown">
+                                                <a class="dropdown-item logout-link" href="@Url.Action("doanhthu", "Admin")">Quản Lý</a>
+                                                <a class="dropdown-item logout-link" href="@Url.Action("Logout", "User")">Đăng xuất</a>
+                                            </div>
                                         </div>
                                     </li>
 
+                                }
+                                else if (userRole == 2) // Nếu là cộng tác viên
+                                {
+                                    <li class="nav-item rounded-pill border border-warning">
+                                        <a class="nav-link" href="#" id="userInfoDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa-solid fa-user-tie"></i>
+                                            <span class="user-role">Cộng Tác Viên</span>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="userInfoDropdown">
+                                            <a class="dropdown-item logout-link" href="@Url.Action("listaccCTV", "collaborators")">Quản Lý</a>
+                                            <a class="dropdown-item logout-link" href="@Url.Action("Logout", "User")">Đăng xuất</a>
+                                        </div>
+                                    </li>
+                                }
+                                else if (userRole == 3) // Nếu là nhân viên
+                                {
+                                    <li class="nav-item rounded-pill border border-warning">
+                                        <a class="nav-link" href="#" id="userInfoDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa-solid fa-user-tie"></i>
+                                            <span class="user-role">Nhân Viên</span>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="userInfoDropdown">
+                                            <a class="dropdown-item logout-link" href="@Url.Action("userNV", "Employer")">Quản Lý</a>
+                                            <a class="dropdown-item logout-link" href="@Url.Action("Logout", "User")">Đăng xuất</a>
+                                        </div>
+                                    </li>
                                 }
                             }
 </div>
@@ -113,7 +140,7 @@
                     <button type="button" id="topNapButton" class="btn" onclick="showTopNapThe()">TOP NẠP THẺ</button>
                 </div>
                 <div id="napTheContainer" style="display: none;">
-                    <form>
+                    <form id="napTheForm">
                         <div class="form-group text-white">
                             <label for="selectNhaMang">Chọn nhà mạng:</label>
                             <select class="form-control" id="selectNhaMang">
@@ -127,15 +154,14 @@
                             <label for="selectMenhGia">Chọn mệnh giá:</label>
                             <select class="form-control" id="selectMenhGia">
                                 <option value="">Chọn mệnh giá</option>
-                                <option value="10000">10.000 VNĐ - (nhận 80%)</option>
-                                <option value="20000">20.000 VNĐ - (nhận 80%)</option>
-                                <option value="30000">30.000 VNĐ - (nhận 80%)</option>
-                                <option value="50000">50.000 VNĐ - (nhận 80%)</option>
-                                <option value="100000">100.000 VNĐ - (nhận 80%)</option>
-                                <option value="200000">200.000 VNĐ - (nhận 80%)</option>
-                                <option value="300000">300.000 VNĐ - (nhận 80%)</option>
-                                <option value="500000">500.000 VNĐ - (nhận 80%)</option>
-                                <option value="1000000">1.000.000 VNĐ - (nhận 80%)</option>
+                                <option value="10000">10.000 VNĐ - (nhận 70%)</option>
+                                <option value="20000">20.000 VNĐ - (nhận 70%)</option>
+                                <option value="50000">50.000 VNĐ - (nhận 70%)</option>
+                                <option value="100000">100.000 VNĐ - (nhận 70%)</option>
+                                <option value="200000">200.000 VNĐ - (nhận 70%)</option>
+                                <option value="300000">300.000 VNĐ - (nhận 70%)</option>
+                                <option value="500000">500.000 VNĐ - (nhận 70%)</option>
+                                <option value="1000000">1.000.000 VNĐ - (nhận 70%)</option>
                             </select>
                         </div>
                         <div class="form-group text-white">
@@ -146,9 +172,10 @@
                             <label for="maThe">Mã thẻ:</label>
                             <input type="text" class="form-control" id="maThe">
                         </div>
-                        <button type="button" class="btn-nap-the" onclick="napThe()">Nạp thẻ</button>
+                        <button type="button" class="btn-nap-the" id="napTheButton">Nạp thẻ</button>
                     </form>
                 </div>
+
                 <div id="topNapTheContainer" class="top-nap-the-container" style="display: none;">
 
                 </div>
@@ -163,9 +190,6 @@
     @RenderBody()
 
     <hr />
-    <footer>
-        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-    </footer>
 
     <div id="modalSignup" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -225,7 +249,7 @@
         <p>HỆ THỐNG BÁN ACC TỰ ĐỘNG</p>
         <p>ĐẢM BẢO UY TÍN VÀ CHẤT LƯỢNG.</p>
         <p>CHÚNG TÔI LUÔN LẤY UY TÍN LÀM HÀNG ĐẦU ĐỐI VỚI KHÁCH HÀNG. HI VỌNG SẼ ĐƯỢC PHỤC VỤ CÁC BẠN. CẢM ƠN!</p>
-        <p>Số điện thoại: 123456789</p>
+        <p>Số điện thoại: 0919332046    </p>
         <p>Email: nhom8vippro@gmail.com</p>
     </footer>
 
@@ -280,6 +304,42 @@
                 } else {
                     dropdownMenu.style.display = 'block';
                 }
+            });
+        });
+        $(document).ready(function () {
+            $("#napTheButton").click(function () {
+                var nhaMang = $("#selectNhaMang").val();
+                var menhGia = $("#selectMenhGia").val();
+                var seri = $("#seri").val();
+                var maThe = $("#maThe").val();
+                var isLoggedIn = @(Session["LoggedInUser"] != null ? "true" : "false");
+                if (!isLoggedIn) {
+                    alert("Vui lòng đăng nhập để thực hiện nạp thẻ.");
+                    window.location.href = "/User/Login";
+                    return;
+                }
+                if (nhaMang === "" || menhGia === "" || seri === "" || maThe === "") {
+                    alert("Vui lòng nhập đầy đủ thông tin");
+                    return;
+                }
+                $.ajax({
+                    url: '/Home/napthe',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        nhaMang: nhaMang,
+                        menhGia: menhGia,
+                        seri: seri,
+                        maThe: maThe
+                    },
+                    success: function (response) {
+                        alert("Thẻ Đang Được Xử Lí.");
+                        console.log(response);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
             });
         });
 

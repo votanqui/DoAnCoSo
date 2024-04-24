@@ -1,0 +1,61 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Trang Nhân Viên</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/1f9baf8be7.js" crossorigin="anonymous"></script>
+    <style>
+        .admin-menu {
+            background-color: #333;
+            color: #fff;
+            height: 100vh;
+        }
+
+            .admin-menu a {
+                display: block;
+                padding: 10px;
+                color: #fff;
+                text-decoration: none;
+            }
+
+                .admin-menu a:hover {
+                    background-color: #555;
+                }
+
+        .admin-content {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 admin-menu">
+                <h4>Admin Panel</h4>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Xin Chào @Session["UserName"]</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("userNV", "Employer")">Quản Lý Khách Hàng</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Logout", "Admin")">Đăng xuất</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-10 admin-content">
+                @RenderBody()
+                @RenderSection("upload", required: false)
+            </div>
+        </div>
+    </div>
+</body>
+</html>

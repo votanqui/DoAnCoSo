@@ -1,0 +1,165 @@
+﻿@{
+    ViewBag.Title = "doanhthu";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div>
+
+    <div class="row">
+        <div class=" col-lg-4 col-12 ">
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h1>@String.Format("{0:n0}", @ViewBag.TotalRevenue)</h1>
+                    <p>Tổng doanh thu</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-money-bill"></i>
+                </div>
+            </div>
+        </div>
+        <div class=" col-lg-4 col-12">
+            <div class="small-box bg-warning">
+                <div class="inner">
+                    <h1>@String.Format("{0:n0}", @ViewBag.ThisMonthRevenue)</h1>
+                    <p>Doanh thu tháng</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+            </div>
+        </div>
+        <div class=" col-lg-4 col-12">
+            <div class="small-box bg-primary">
+                <div class="inner">
+                    <h1>@String.Format("{0:n0}", @ViewBag.TodayRevenue)</h1>
+                    <p>Doanh thu hôm nay</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    <div class="row">
+        <div class=" col-lg-6 col-12">
+            <div class="small-box bg-danger">
+                <div class="inner">
+                    <h1>@String.Format("{0:n0}", @ViewBag.TotalAccSold)</h1>
+                    <p>Tổng acc đã bán</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+            </div>
+        </div>
+        <div class=" col-lg-6 col-12">
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h1>@String.Format("{0:n0}", @ViewBag.TotalAccOnShop)</h1>
+                    <p>Acc trên shop</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-shopping-bag"></i>
+                </div>
+            </div>
+        </div>
+     
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-12">
+            <div class="small-box bg-success">
+                <div class="inner">
+                    <h1>@String.Format("{0:n0}", @ViewBag.TotalMembers)</h1>
+                    <p>Tổng thành viên</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-users"></i>
+                </div>
+            </div>
+        </div>
+        <div class=" col-lg-4 col-12">
+            <div class="small-box bg-warning">
+                <div class="inner">
+                    <h1>@String.Format("{0:n0}", @ViewBag.TotalBalanceChanges)</h1>
+                    <p>Tổng biến động số dư</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-12">
+            <div class="small-box bg-secondary">
+                <div class="inner">
+                    <h1>@String.Format("{0:n0}", ViewBag.BalanceChangesToday)</h1>
+                    <p>Biến động số dư hôm nay</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+    @section myCustomScripts {
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+        <script>
+          
+        </script>
+        <style>
+            .small-box {
+                border-radius: 10px;
+                overflow: hidden; /* Loại bỏ viền cong khi icon to ra */
+                position: relative; /* Để tạo vị trí tương đối cho icon */
+            }
+
+                .small-box:hover .icon i {
+                    font-size: 60px;
+                    /* Kích thước của icon khi di chuột qua */
+                }
+
+                .small-box .icon {
+                    padding-top:10px;
+                    text-align: right; /* Căn giữa nội dung của icon */
+                    position: absolute; /* Để tạo vị trí tuyệt đối cho icon */
+                    top: 0; /* Căn theo trục y ở đỉnh của small-box */
+                    right: 0; /* Căn theo trục x ở bên phải của small-box */
+                    bottom: 0; /* Căn theo trục y ở dưới của small-box */
+                    left: 0; /* Căn theo trục x ở bên trái của small-box */
+                    transition: all 0.3s ease; /* Hiệu ứng chuyển động mượt mà */
+                }
+
+                    .small-box .icon i {
+                        font-size: 50px; /* Kích thước mặc định của icon */
+                        margin-right: 10px;
+                        opacity: 0.5; /* Khoảng cách giữa icon và nội dung bên trái của icon */
+                    }
+                
+
+                .small-box:hover .icon i {
+                    opacity: 1; /* Khi di chuột qua, icon không mờ */
+                }
+
+                .small-box .inner {
+                    padding: 0;
+                }
+
+            .row {
+                margin-right: -15px;
+                margin-left: -15px;
+            }
+
+            .col-lg-4,
+            .col-lg-6,
+            .col-12 {
+                padding-right: 15px;
+                padding-left: 15px;
+                padding-top: 15px;
+            }
+        </style>
+    }

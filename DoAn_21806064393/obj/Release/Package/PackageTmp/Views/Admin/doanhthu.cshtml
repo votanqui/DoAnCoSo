@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "doanhthu";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Biểu đồ thống kê doanh thu</h2>
+
+<div>
+    <canvas id="salesChart" width="800" height="400"></canvas>
+</div>
+
+@section myCustomScripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var salesData = @Html.Raw(Json.Encode(ViewBag.SalesData));
+
+            // Tạo các mảng để lưu dữ liệu cho biểu đồ
+            var dates = [];
+            var revenues = [];
+
+            // Xử lý dữ liệu
+            salesData.forEach(function (item) {
+                // Định dạng ngày tháng từ định dạng datetime
+                var formattedDate = moment(item.Date).format("YYYY-MM-DD");
+
+                dates.push(formattedDate);
+                revenues.push(item.Price);
+            });
+
+            // Tạo biểu đồ
+            var ctx = document.getElementById('salesChart').getContext('2d');
+            var salesChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: dates,
+                    datasets: [{
+                        label: 'Doanh thu',
+                        data: revenues,
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)', // Màu nền
+                        borderColor: 'rgba(255, 99, 132, 1)', // Màu viền
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            $('#salesChart').before(`
+                <div class="info-box">
+                    <div class="info">Tổng doanh thu: @ViewBag.TotalRevenue</div>
+                    <div class="info">Doanh thu tháng : @ViewBag.ThisMonthRevenue</div>
+                    <div class="info">Doanh thu hôm nay: @ViewBag.TodayRevenue</div>
+                    <div class="info">Tổng thành viên: @ViewBag.TotalMembers</div>
+                    <div class="info">Acc trên shop: @ViewBag.TotalAccOnShop</div>
+                </div>
+            `);
+        });
+    </script>
+    <style>
+        .info-box {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .info {
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+}

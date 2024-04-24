@@ -31,21 +31,40 @@ namespace DoAn_21806064393.Controllers
                         if (userToUpdate != null)
                         {
                             userToUpdate.price = newUserPrice;
-                            data.SubmitChanges(); 
-                            var updateCart = new Cart
+
+                            // Kiểm tra xem đối tượng Cart đã tồn tại trong cơ sở dữ liệu chưa
+                            var existingCart = data.Carts.FirstOrDefault(c => c.idacc == accountId && c.userName == loggedInUser.username);
+                            if (existingCart == null)
                             {
-                                date = DateTime.Now, 
-                                idacc = accountId,
-                                priceacc = accToUpdate.giasaukhuyenmai, 
-                                sotien = loggedInUser.price - accToUpdate.gia, 
-                                userName = loggedInUser.username 
-                            };
-                            data.Carts.InsertOnSubmit(updateCart);
-                            data.SubmitChanges(); 
+                                // Nếu không tồn tại, thì thêm mới vào cơ sở dữ liệu
+                                var updateCart = new Cart
+                                {
+                                    date = DateTime.Now,
+                                    idacc = accountId,
+                                    priceacc = accToUpdate.giasaukhuyenmai,
+                                    sotien = loggedInUser.price - accToUpdate.gia,
+                                    userName = loggedInUser.username,
+                                    taikhoan = accToUpdate.account,
+                                    pass = accToUpdate.password,
+                                };
+                                data.Carts.InsertOnSubmit(updateCart);
+                            }
+
+                            // Cập nhật trạng thái và giá cho acc
                             accToUpdate.status = "da ban";
                             loggedInUser.price = loggedInUser.price - accToUpdate.gia;
                             Session["UserPrice"] = loggedInUser.price;
-                            data.SubmitChanges(); 
+
+                            // Xóa đối tượng GioHangs liên quan nếu tồn tại
+                            var itemToRemove = data.GioHangs.FirstOrDefault(x => x.idnick == accountId);
+                            if (itemToRemove != null)
+                            {
+                                data.GioHangs.DeleteOnSubmit(itemToRemove);
+                            }
+
+                            // Lưu thay đổi vào cơ sở dữ liệu
+                            data.SubmitChanges();
+
                             return Json(new { success = true });
                         }
                         else
@@ -68,5 +87,6 @@ namespace DoAn_21806064393.Controllers
                 return Json(new { success = false, error = ex.Message });
             }
         }
+
     }
 }
